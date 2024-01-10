@@ -6,8 +6,8 @@ namespace LookUpBrazil.API.Models
     public class Location
     {
         [Key]
-        [Column(TypeName = "varchar")]
-        [StringLength(7)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Column(TypeName = "uniqueidentifier")]
         public Guid Id { get; set; }
 
         [Column(TypeName = "varchar")]
