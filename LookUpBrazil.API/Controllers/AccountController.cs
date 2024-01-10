@@ -16,14 +16,15 @@ namespace LookUpBrazil.API.Controllers
     {
         [HttpPost]
         public Task<IActionResult> Post(
-            [FromBody]RegisterViewModel model,
-            [FromServices]LookUpBrazilAPIContext context)
+            [FromBody] RegisterViewModel model,
+            [FromServices] LookUpBrazilAPIContext context)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(new ResultViewModel<string>(ModelState.GetErrors());
+                return BadRequest(new ResultViewModel<string>(ModelState.GetErrors()));
             }
             var user = new User { Name = model.Name, Email = model.Email, };
+        }
 
         [AllowAnonymous]
         [HttpPost("login")]
