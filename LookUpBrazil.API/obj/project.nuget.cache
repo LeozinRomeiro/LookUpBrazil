@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "tERelpVNSw/X5AbpVA0EM2norG5en47q2luSkwqKWhYsWqLxRb0sKkFobAifnKQ30ARsi+ikudXtOSUyC2HIuA==",
+  "dgSpecHash": "hWWbXa23qK9UmyB2DaXeypRJqn6z9Q+weiF0yqseXPptINi6rnq5hbEOrSTHdFeA9JW7M8X9yDCwvlH9gGXdbQ==",
   "success": true,
   "projectFilePath": "C:\\Dev\\LookUpBrazil\\LookUpBrazil.API\\LookUpBrazil.API.csproj",
   "expectedPackageFiles": [
@@ -166,6 +166,7 @@
     "C:\\Users\\leonardo.ferreira\\.nuget\\packages\\nuget.projectmodel\\6.3.1\\nuget.projectmodel.6.3.1.nupkg.sha512",
     "C:\\Users\\leonardo.ferreira\\.nuget\\packages\\nuget.protocol\\6.3.1\\nuget.protocol.6.3.1.nupkg.sha512",
     "C:\\Users\\leonardo.ferreira\\.nuget\\packages\\nuget.versioning\\6.3.1\\nuget.versioning.6.3.1.nupkg.sha512",
+    "C:\\Users\\leonardo.ferreira\\.nuget\\packages\\secureidentity\\1.0.4\\secureidentity.1.0.4.nupkg.sha512",
     "C:\\Users\\leonardo.ferreira\\.nuget\\packages\\swashbuckle.aspnetcore\\6.4.0\\swashbuckle.aspnetcore.6.4.0.nupkg.sha512",
     "C:\\Users\\leonardo.ferreira\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.4.0\\swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512",
     "C:\\Users\\leonardo.ferreira\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.4.0\\swashbuckle.aspnetcore.swaggergen.6.4.0.nupkg.sha512",

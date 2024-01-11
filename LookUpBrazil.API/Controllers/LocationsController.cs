@@ -30,7 +30,7 @@ namespace LookUpBrazil.API.Controllers
         {
             try
             {
-                var locations = await _context.Location.ToListAsync();
+                var locations = await _context.Locations.ToListAsync();
 
                 return Ok(new ResultViewModel<List<Location>>(locations));
             }
@@ -46,7 +46,7 @@ namespace LookUpBrazil.API.Controllers
         {
             try
             {
-                var location = await _context.Location.FirstOrDefaultAsync(x=>x.Id==id);
+                var location = await _context.Locations.FirstOrDefaultAsync(x=>x.Id==id);
 
                 if (location == null)
                     return NotFound(new ResultViewModel<Location>("Conteudo não encontrado"));
@@ -70,7 +70,7 @@ namespace LookUpBrazil.API.Controllers
 
             try
             {
-                var location = await _context.Location.FirstOrDefaultAsync(x=>x.Id == id);
+                var location = await _context.Locations.FirstOrDefaultAsync(x=>x.Id == id);
                 if (location == null)
                     return NotFound(new ResultViewModel<Location>("Conteudo não encontrado"));
 
@@ -78,7 +78,7 @@ namespace LookUpBrazil.API.Controllers
                 location.State = model.State;
                 location.City = model.City;
                 
-                _context.Location.Update(location);
+                _context.Locations.Update(location);
                 await _context.SaveChangesAsync();
 
                 return Ok(new ResultViewModel<Location>(location));
@@ -108,7 +108,7 @@ namespace LookUpBrazil.API.Controllers
                     State = model.State,
                     City = model.City,
                 };
-                await _context.Location.AddAsync(location);
+                await _context.Locations.AddAsync(location);
                 await _context.SaveChangesAsync();
 
                 return CreatedAtAction("GetLocation", new ResultViewModel<Location>(location));
@@ -129,13 +129,13 @@ namespace LookUpBrazil.API.Controllers
         {
             try
             {
-                var location = await _context.Location.FirstOrDefaultAsync(x => x.Id == id);
+                var location = await _context.Locations.FirstOrDefaultAsync(x => x.Id == id);
                 if (location == null)
                 {
                     return NotFound(new ResultViewModel<Location>("Conteudo não encontrado"));
                 }
 
-                _context.Location.Remove(location);
+                _context.Locations.Remove(location);
                 await _context.SaveChangesAsync();
 
                 return Ok(new ResultViewModel<Location>(location));

@@ -1,4 +1,5 @@
-﻿using LookUpBrazil.API.Models;
+﻿using LookUpBrazil.API.Extension;
+using LookUpBrazil.API.Models;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -12,15 +13,10 @@ namespace LookUpBrazil.API.Services
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(Configuration.JwtKey);
+            var claims = user.GetClaims();
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity(new Claim[]
-                {
-                    new Claim(ClaimTypes.NameIdentifier, user.Name),
-                    new Claim(ClaimTypes.Role, "admin"),
-                    new Claim(ClaimTypes.Role, "user"),
-                    new Claim("City","Maringá")
-                }),
+                Subject = new ClaimsIdentity(claims),
                 Expires = DateTime.UtcNow.AddDays(1),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };

@@ -14,6 +14,8 @@ namespace LookUpBrazil.API.Data
         {
         }
 
-        public DbSet<LookUpBrazil.API.Models.Location> Location { get; set; } = default!;
+        public DbSet<LookUpBrazil.API.Models.Location> Locations { get; set; } = default!;
+
+        public DbSet<LookUpBrazil.API.Models.User> Users { get; set; } = default!;
     }
 }
