@@ -11,6 +11,7 @@ using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using LookUpBrazil.API;
 using System.Net.Mail;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -46,6 +47,7 @@ app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseStaticFiles();
 app.MapControllers();
 
 app.Run();
@@ -56,9 +58,9 @@ void LoadConfiguration(WebApplication app)
     Configuration.NameAPI = app.Configuration.GetValue<string>("NameAPI");
     Configuration.JwtKey = app.Configuration.GetValue<string>("JwtKey");
 
-    var smtp = new Configuration.SmtpConfiguration();
-    app.Configuration.GetSection("Smtp").Bind(smtp);
-    Configuration.Smtp = smtp;
+    //var smtp = new Configuration.SmtpConfiguration();
+    //app.Configuration.GetSection("Smtp").Bind(smtp);
+    //Configuration.Smtp = smtp;
 }
 
 void ConfigureAutentication(WebApplicationBuilder builder)
@@ -86,6 +88,10 @@ void ConfigureMVC(WebApplicationBuilder builder)
     .ConfigureApiBehaviorOptions(options =>
     {
         options.SuppressModelStateInvalidFilter = true;
+    })
+    .AddJsonOptions(x =>
+    {
+        x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
     });
 }
 

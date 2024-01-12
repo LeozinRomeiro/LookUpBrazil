@@ -17,5 +17,7 @@ namespace LookUpBrazil.API.Models
         [Column(TypeName = "varchar")]
         [StringLength(80)]
         public string City { get; set; } = string.Empty;
+        public Category Category { get; set; }
+        public DateTime LastUpdateDate { get; set; }
     }
 }

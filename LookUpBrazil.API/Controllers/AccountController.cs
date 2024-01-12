@@ -3,12 +3,13 @@ using LookUpBrazil.API.Extension;
 using LookUpBrazil.API.Models;
 using LookUpBrazil.API.Services;
 using LookUpBrazil.API.ViewModels;
-using LookUpBrazil.API.ViewModels.Account;
+using LookUpBrazil.API.ViewModels.Accounts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SecureIdentity.Password;
+using System.Text.RegularExpressions;
 
 namespace LookUpBrazil.API.Controllers
 {
@@ -86,6 +87,46 @@ namespace LookUpBrazil.API.Controllers
             {
                 return StatusCode(500, new ResultViewModel<string>("APP02 - Falha interna!"));
             }
+        }
+
+        [Authorize]
+        [HttpPost("upload-image")]
+        public async Task<IActionResult> UploadImage(
+            [FromBody] UploadImageViewModel model,
+            [FromServices] LookUpBrazilAPIContext context)
+        {
+            var fileName = $"{Guid.NewGuid().ToString()}.jpg";
+            var data = new Regex(@"^data:image\/[a-z]+;base64,").Replace(model.Base64Image, "");
+            var bytes=Convert.FromBase64String(data);
+
+            try
+            {
+                await System.IO.File.WriteAllBytesAsync($"wwwroot/images/{fileName}",bytes);
+            }
+            catch
+            {
+                return StatusCode(500, new ResultViewModel<string>("04343 - Falha interna"));
+            }
+
+            var user = await context.Users.FirstOrDefaultAsync(x => x.Email == User.Identity.Name);
+
+            if(user == null) {
+                return NotFound(new ResultViewModel<User>("Usuario não encontrado"));
+            }
+
+            user.Image = $"https://localhost:0000/images/{fileName}";
+
+            try
+            {
+                context.Users.Update(user);
+                context.SaveChangesAsync();
+            }
+            catch
+            {
+                return StatusCode(500, new ResultViewModel<string>("05X04 - Falha interna no servidor"));
+            }
+
+            return Ok(new ResultViewModel<string>("Imagem alterada com sucesso"));
         }
 
         [Authorize]

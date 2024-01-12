@@ -268,3 +268,4 @@ C:\Dev\LookUpBrazil\LookUpBrazil.API\obj\Debug\net8.0\refint\LookUpBrazil.API.dl
 C:\Dev\LookUpBrazil\LookUpBrazil.API\obj\Debug\net8.0\LookUpBrazil.API.pdb
 C:\Dev\LookUpBrazil\LookUpBrazil.API\obj\Debug\net8.0\LookUpBrazil.API.genruntimeconfig.cache
 C:\Dev\LookUpBrazil\LookUpBrazil.API\obj\Debug\net8.0\ref\LookUpBrazil.API.dll
+C:\Dev\LookUpBrazil\LookUpBrazil.API\bin\Debug\net8.0\SecureIdentity.dll
