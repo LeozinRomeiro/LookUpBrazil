@@ -19,7 +19,7 @@ namespace LookUpBrazil.API.Controllers
     public class AccountController : ControllerBase
     {
         [HttpPost]
-        public async Task<IActionResult> Post(
+        public async Task<IActionResult> PostAsync(
             [FromBody] RegisterViewModel model,
             [FromServices] LookUpBrazilAPIContext context)
         {
@@ -56,7 +56,7 @@ namespace LookUpBrazil.API.Controllers
 
         [AllowAnonymous]
         [HttpPost("login")]
-        public async Task<IActionResult> Login(
+        public async Task<IActionResult> LoginAsync(
             [FromBody] LoginViewModel model,
             [FromServices] LookUpBrazilAPIContext context,
             [FromServices] TokenService tokenService)
@@ -91,7 +91,7 @@ namespace LookUpBrazil.API.Controllers
 
         [Authorize]
         [HttpPost("upload-image")]
-        public async Task<IActionResult> UploadImage(
+        public async Task<IActionResult> UploadImageAsync(
             [FromBody] UploadImageViewModel model,
             [FromServices] LookUpBrazilAPIContext context)
         {
@@ -119,7 +119,7 @@ namespace LookUpBrazil.API.Controllers
             try
             {
                 context.Users.Update(user);
-                context.SaveChangesAsync();
+                await context.SaveChangesAsync();
             }
             catch
             {
@@ -128,9 +128,6 @@ namespace LookUpBrazil.API.Controllers
 
             return Ok(new ResultViewModel<string>("Imagem alterada com sucesso"));
         }
-
-        [Authorize]
-        [HttpPost]
 
         [Authorize(Roles ="user")]
         [HttpGet("user")]

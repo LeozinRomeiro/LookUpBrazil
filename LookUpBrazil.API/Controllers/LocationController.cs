@@ -49,6 +49,39 @@ namespace LookUpBrazil.API.Controllers
             }
         }
 
+        // GET: api/Location/Category
+        [HttpGet("Category/{category}")]
+        public async Task<ActionResult> GetByCategoryAsync(
+            [FromRoute] string category,
+            [FromServices] LookUpBrazilAPIContext context,
+            [FromQuery] int page = 0, [FromQuery] int pageSize = 20)
+        {
+            try
+            {
+                var locations = await context.Locations.AsNoTracking().Include(x => x.Category).Where(x=>x.Category.Name==category).Select(x => new ListLocationsViewModel
+                {
+                    State = x.State,
+                    City = x.City,
+                    Category = x.Category.Name,
+                    LastUpdateDate = x.LastUpdateDate,
+                }).Skip(page * pageSize)
+                .Take(pageSize)
+                .OrderByDescending(x => x.LastUpdateDate)
+                .ToListAsync();
+
+                return Ok(new ResultViewModel<dynamic>(new
+                {
+                    page,
+                    pageSize,
+                    locations
+                }));
+            }
+            catch
+            {
+                return StatusCode(500, new ResultViewModel<List<Location>>("APG02 - Falha interna!"));
+            }
+        }
+
         // GET: api/Location/5
         [HttpGet("{id}")]
         public async Task<ActionResult> GetLocation(
@@ -91,7 +124,7 @@ namespace LookUpBrazil.API.Controllers
                 //_context.Entry(location).State = EntityState.Modified;
                 location.State = model.State;
                 location.City = model.City;
-                location.Category = context.Categories.Find(model.CategoryId);
+                location.Category = context.Categories.FirstOrDefault(x=>x.Id==model.CategoryId);
                 location.LastUpdateDate = model.LastUpdateDate;
 
                 context.Locations.Update(location);

@@ -12,6 +12,8 @@ using Microsoft.IdentityModel.Tokens;
 using LookUpBrazil.API;
 using System.Net.Mail;
 using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.ResponseCompression;
+using System.IO.Compression;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,10 +24,6 @@ ConfigureServices(builder);
 // Add services to the container.
 //builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 //    .AddMicrosoftIdentityWebApi(builder.Configuration.GetSection("AzureAd"));
-
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 
 //builder.Services.Configure<RequestLocalizationOptions>(options =>
 //{
@@ -47,6 +45,7 @@ app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseResponseCompression();
 app.UseStaticFiles();
 app.MapControllers();
 
@@ -84,6 +83,17 @@ void ConfigureAutentication(WebApplicationBuilder builder)
 
 void ConfigureMVC(WebApplicationBuilder builder)
 {
+    builder.Services.AddMemoryCache();
+    builder.Services.AddResponseCompression(options =>
+    {
+        // options.Providers.Add<BrotliCompressionProvider>();
+        options.Providers.Add<GzipCompressionProvider>();
+        // options.Providers.Add<CustomCompressionProvider>();
+    });
+    builder.Services.Configure<GzipCompressionProviderOptions>(options =>
+    {
+        options.Level = CompressionLevel.Optimal;
+    });
     builder.Services.AddControllers()
     .ConfigureApiBehaviorOptions(options =>
     {
@@ -98,7 +108,12 @@ void ConfigureMVC(WebApplicationBuilder builder)
 void ConfigureServices(WebApplicationBuilder builder)
 {
     builder.Services.AddDbContext<LookUpBrazilAPIContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("LookUpBrazilAPIContext") ?? throw new InvalidOperationException("Connection string 'LookUpBrazilAPIContext' not found.")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string não informada.")));
 
     builder.Services.AddTransient<TokenService>();
+    builder.Services.AddTransient<EmailService>();
+
+    // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+    builder.Services.AddEndpointsApiExplorer();
+    builder.Services.AddSwaggerGen();
 }

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using LookUpBrazil.API.Models;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace LookUpBrazil.API.Controllers
 {
@@ -16,11 +17,17 @@ namespace LookUpBrazil.API.Controllers
         // GET: api/Category
         [HttpGet]
         public async Task<ActionResult> GetAsync(
+            [FromServices] IMemoryCache memoryCache,    
             [FromServices] LookUpBrazilAPIContext context,
             [FromQuery] int page = 0, [FromQuery] int pageSize = 20)
         {
             try
             {
+                //var categories = memoryCache.GetOrCreate("CategoriesCache", entry =>
+                //{
+                //    entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromHours(1);
+                //    return GetAsync(context);
+                //});
                 var categories = await context.Categories.AsNoTracking().Select(x => new {
                    x.Name
                 }).Skip(page * pageSize)

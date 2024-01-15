@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LookUpBrazil.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2a5c67470d6d7474ef131a4618f8c02aca7be5ee")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
 [assembly: System.Reflection.AssemblyProductAttribute("LookUpBrazil.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LookUpBrazil.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

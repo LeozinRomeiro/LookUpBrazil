@@ -78,6 +78,7 @@ C:\Dev\LookUpBrazil\LookUpBrazil.API\bin\Debug\net8.0\NuGet.Packaging.dll
 C:\Dev\LookUpBrazil\LookUpBrazil.API\bin\Debug\net8.0\NuGet.ProjectModel.dll
 C:\Dev\LookUpBrazil\LookUpBrazil.API\bin\Debug\net8.0\NuGet.Protocol.dll
 C:\Dev\LookUpBrazil\LookUpBrazil.API\bin\Debug\net8.0\NuGet.Versioning.dll
+C:\Dev\LookUpBrazil\LookUpBrazil.API\bin\Debug\net8.0\SecureIdentity.dll
 C:\Dev\LookUpBrazil\LookUpBrazil.API\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Dev\LookUpBrazil\LookUpBrazil.API\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Dev\LookUpBrazil\LookUpBrazil.API\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
@@ -268,4 +269,3 @@ C:\Dev\LookUpBrazil\LookUpBrazil.API\obj\Debug\net8.0\refint\LookUpBrazil.API.dl
 C:\Dev\LookUpBrazil\LookUpBrazil.API\obj\Debug\net8.0\LookUpBrazil.API.pdb
 C:\Dev\LookUpBrazil\LookUpBrazil.API\obj\Debug\net8.0\LookUpBrazil.API.genruntimeconfig.cache
 C:\Dev\LookUpBrazil\LookUpBrazil.API\obj\Debug\net8.0\ref\LookUpBrazil.API.dll
-C:\Dev\LookUpBrazil\LookUpBrazil.API\bin\Debug\net8.0\SecureIdentity.dll
