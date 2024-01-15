@@ -85,3 +85,4 @@ C:\Dev\LookUpBrazil\LookUpBrazil\obj\Debug\net7.0\refint\LookUpBrazil.dll
 C:\Dev\LookUpBrazil\LookUpBrazil\obj\Debug\net7.0\LookUpBrazil.pdb
 C:\Dev\LookUpBrazil\LookUpBrazil\obj\Debug\net7.0\LookUpBrazil.genruntimeconfig.cache
 C:\Dev\LookUpBrazil\LookUpBrazil\obj\Debug\net7.0\ref\LookUpBrazil.dll
+C:\Dev\LookUpBrazil\LookUpBrazil\bin\Debug\net7.0\RestSharp.dll

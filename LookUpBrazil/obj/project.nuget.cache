@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "mlBK+RF5Xgr67YRp1o4uuiOcOpqQbRCcJe5HVBYrXk8W45Ly8/wh7t/itV4R/ubVk3hWNBuiqSpZqojWoUAwEQ==",
+  "dgSpecHash": "XZ5WT9iUNE5hZOndmOmRO9Y2idTm1zoUi/03oIue/77+D3Q+kuF8d7zQR0SMEgkmSdzH0E6VBLLSJVDTn6+7rg==",
   "success": true,
   "projectFilePath": "C:\\Dev\\LookUpBrazil\\LookUpBrazil\\LookUpBrazil.csproj",
   "expectedPackageFiles": [
@@ -50,6 +50,7 @@
     "C:\\Users\\leonardo.ferreira\\.nuget\\packages\\microsoft.sqlserver.server\\1.0.0\\microsoft.sqlserver.server.1.0.0.nupkg.sha512",
     "C:\\Users\\leonardo.ferreira\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
     "C:\\Users\\leonardo.ferreira\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
+    "C:\\Users\\leonardo.ferreira\\.nuget\\packages\\restsharp\\110.2.0\\restsharp.110.2.0.nupkg.sha512",
     "C:\\Users\\leonardo.ferreira\\.nuget\\packages\\system.codedom\\4.4.0\\system.codedom.4.4.0.nupkg.sha512",
     "C:\\Users\\leonardo.ferreira\\.nuget\\packages\\system.configuration.configurationmanager\\6.0.1\\system.configuration.configurationmanager.6.0.1.nupkg.sha512",
     "C:\\Users\\leonardo.ferreira\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.0\\system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512",
@@ -70,7 +71,7 @@
     "C:\\Users\\leonardo.ferreira\\.nuget\\packages\\system.text.encoding\\4.3.0\\system.text.encoding.4.3.0.nupkg.sha512",
     "C:\\Users\\leonardo.ferreira\\.nuget\\packages\\system.text.encoding.codepages\\6.0.0\\system.text.encoding.codepages.6.0.0.nupkg.sha512",
     "C:\\Users\\leonardo.ferreira\\.nuget\\packages\\system.text.encodings.web\\7.0.0\\system.text.encodings.web.7.0.0.nupkg.sha512",
-    "C:\\Users\\leonardo.ferreira\\.nuget\\packages\\system.text.json\\7.0.0\\system.text.json.7.0.0.nupkg.sha512",
+    "C:\\Users\\leonardo.ferreira\\.nuget\\packages\\system.text.json\\7.0.2\\system.text.json.7.0.2.nupkg.sha512",
     "C:\\Users\\leonardo.ferreira\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
     "C:\\Users\\leonardo.ferreira\\.nuget\\packages\\system.windows.extensions\\6.0.0\\system.windows.extensions.6.0.0.nupkg.sha512"
   ],

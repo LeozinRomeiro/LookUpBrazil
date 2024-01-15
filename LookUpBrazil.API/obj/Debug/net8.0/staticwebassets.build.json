@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ksR/9l5bfWwCSxif9eaUO8mOdJlN799xsbunWUa7wx4=",
+  "Hash": "8XYAA3XOElW55XrPCd66kRev5vBeJnt0daOccYcNLpw=",
   "Source": "LookUpBrazil.API",
   "BasePath": "_content/LookUpBrazil.API",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "LookUpBrazil.API\\wwwroot",
       "Source": "LookUpBrazil.API",
-      "ContentRoot": "C:\\Dev\\LookUpBrazil\\LookUpBrazil.API\\wwwroot\\",
+      "ContentRoot": "C:\\dev\\LookUpBrazil\\LookUpBrazil.API\\wwwroot\\",
       "BasePath": "_content/LookUpBrazil.API",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Dev\\LookUpBrazil\\LookUpBrazil.API\\obj\\Debug\\net8.0\\scopedcss\\bundle\\LookUpBrazil.API.styles.css",
+      "Identity": "C:\\dev\\LookUpBrazil\\LookUpBrazil.API\\obj\\Debug\\net8.0\\scopedcss\\bundle\\LookUpBrazil.API.styles.css",
       "SourceId": "LookUpBrazil.API",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\Dev\\LookUpBrazil\\LookUpBrazil.API\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
+      "ContentRoot": "C:\\dev\\LookUpBrazil\\LookUpBrazil.API\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
       "BasePath": "_content/LookUpBrazil.API",
       "RelativePath": "LookUpBrazil.API.styles.css",
       "AssetKind": "All",
@@ -33,7 +33,7 @@
       "AssetTraitValue": "ApplicationBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Dev\\LookUpBrazil\\LookUpBrazil.API\\obj\\Debug\\net8.0\\scopedcss\\bundle\\LookUpBrazil.API.styles.css"
+      "OriginalItemSpec": "C:\\dev\\LookUpBrazil\\LookUpBrazil.API\\obj\\Debug\\net8.0\\scopedcss\\bundle\\LookUpBrazil.API.styles.css"
     },
     {
       "Identity": "C:\\Users\\leonardo.ferreira\\.nuget\\packages\\microsoft.aspnetcore.components.quickgrid\\8.0.0\\staticwebassets\\Microsoft.AspNetCore.Components.QuickGrid.bundle.scp.css",

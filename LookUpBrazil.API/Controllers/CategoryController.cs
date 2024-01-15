@@ -34,12 +34,14 @@ namespace LookUpBrazil.API.Controllers
                 .Take(pageSize)
                 .ToListAsync();
 
-                return Ok(new ResultViewModel<dynamic>(new
-                {
-                    page,
-                    pageSize,
-                    categories
-                }));
+                //return Ok(new ResultViewModel<dynamic>(new
+                //{
+                //    page,
+                //    pageSize,
+                //    categories
+                //}));
+
+                return Ok(categories);
             }
             catch
             {
