@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "XZ5WT9iUNE5hZOndmOmRO9Y2idTm1zoUi/03oIue/77+D3Q+kuF8d7zQR0SMEgkmSdzH0E6VBLLSJVDTn6+7rg==",
+  "dgSpecHash": "ryg/CFwcjRJ8BS5QhL6v/NqcKKFpIEWS7O9yw0PZbyo8LeAF3q1rf4orBfkXlJZotPNEat5KaETyUktDLLeRww==",
   "success": true,
   "projectFilePath": "C:\\Dev\\LookUpBrazil\\LookUpBrazil\\LookUpBrazil.csproj",
   "expectedPackageFiles": [
@@ -50,6 +50,7 @@
     "C:\\Users\\leonardo.ferreira\\.nuget\\packages\\microsoft.sqlserver.server\\1.0.0\\microsoft.sqlserver.server.1.0.0.nupkg.sha512",
     "C:\\Users\\leonardo.ferreira\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
     "C:\\Users\\leonardo.ferreira\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
+    "C:\\Users\\leonardo.ferreira\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\leonardo.ferreira\\.nuget\\packages\\restsharp\\110.2.0\\restsharp.110.2.0.nupkg.sha512",
     "C:\\Users\\leonardo.ferreira\\.nuget\\packages\\system.codedom\\4.4.0\\system.codedom.4.4.0.nupkg.sha512",
     "C:\\Users\\leonardo.ferreira\\.nuget\\packages\\system.configuration.configurationmanager\\6.0.1\\system.configuration.configurationmanager.6.0.1.nupkg.sha512",

@@ -15,8 +15,8 @@ else
     <table class="table">
         <thead>
             <tr>
-                <th>ID</th>
                 <th>Nome</th>
+                <th></th>
                 <th></th>
             </tr>
         </thead>
@@ -24,26 +24,64 @@ else
             @foreach (var item in categories)
             {
                 <tr>
-                    <td>@item.Id</td>
                     <td>@item.Name</td>
-@*                     <td>
+                    <td>
                         <button class="btn btn-info" @onclick="() => GetAsync(item.Id)">
                             EDIT
                         </button>
-                    </td> *@
+                    </td>
                 </tr>
             }
         </tbody>
     </table>
 }
 
-@code{
-    private ResultViewModel<Category> resultViewModel;
-    private List<Category> categories;
+<div class="form-group">
+    <label class="form-label" >Nome da Categoria</label>
+    <input type="text" class="form-control" id="name" placeholder="Nome" @bind="categoryPost.Name">
+</div>
+<button @onclick="PostAsync" class="btn btn-primary">Enviar</button>
 
-    protected override async Task OnInitializedAsync(){
+@code {
+    private ResultViewModel<Category> resultViewModel;
+    private List<CategoryViewModel> categories;
+    private CategoryViewModel category;
+    private CategoryViewModel categoryPost = new();
+
+    protected override async Task OnInitializedAsync()
+    {
         var client = new RestClient();
-        var request = new RestRequest($"{Configuration.ApiUrl}/v1/Category");
-        var result = await client.GetAsync<List<Category>?>(request);
+        var request = new RestRequest($"{Configuration.ApiUrl}/api/Category");
+        var result = await client.GetAsync<List<CategoryViewModel>?>(request);
+
+        if (result != null)
+        {
+            //            resultViewModel = result;
+            categories = result;//.Data;
+        }
+    }
+    private async Task PostAsync()
+    {
+        var client = new RestClient();
+        var request = new RestRequest($"{Configuration.ApiUrl}/api/Category").AddJsonBody(categoryPost);
+        var categoryCreate = await client.PostAsync<CategoryViewModel?>(request);
+
+        if(categoryCreate is not null)
+        {
+            categories.Add(categoryCreate);
+        }
+    }
+
+    private async Task GetAsync(Guid id)
+    {
+        var client = new RestClient();
+        var request = new RestRequest($"{Configuration.ApiUrl}/api/Category{id}");
+        var result = await client.GetAsync<CategoryViewModel?>(request);
+
+        if (result != null)
+        {
+            //            resultViewModel = result;
+            category = result;//.Data;
+        }
     }
 }
