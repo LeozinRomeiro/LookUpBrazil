@@ -482,3 +482,8 @@ $RECYCLE.BIN/
 
 # Vim temporary swap files
 *.swp
+/LookUpBrazil/obj/Debug/net7.0/LookUpBrazil.AssemblyInfo.cs
+/LookUpBrazil.API/obj/LookUpBrazil.API.csproj.nuget.dgspec.json
+/LookUpBrazil.API/obj/LookUpBrazil.API.csproj.nuget.g.props
+/LookUpBrazil.API/obj/project.assets.json
+/LookUpBrazil.API/obj/project.nuget.cache
