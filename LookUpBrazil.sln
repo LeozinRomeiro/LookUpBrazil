@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LookUpBrazil", "LookUpBrazi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LookUpBrazil.API", "LookUpBrazil.API\LookUpBrazil.API.csproj", "{6C03D4BA-CFF3-4205-A54A-9260AB1F87F9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LookUpBrazil.Core", "LookUpBrazil.Core\LookUpBrazil.Core.csproj", "{B0E25A1D-38AB-427B-A8EC-6270B45888F7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{6C03D4BA-CFF3-4205-A54A-9260AB1F87F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6C03D4BA-CFF3-4205-A54A-9260AB1F87F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6C03D4BA-CFF3-4205-A54A-9260AB1F87F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0E25A1D-38AB-427B-A8EC-6270B45888F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0E25A1D-38AB-427B-A8EC-6270B45888F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0E25A1D-38AB-427B-A8EC-6270B45888F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0E25A1D-38AB-427B-A8EC-6270B45888F7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
