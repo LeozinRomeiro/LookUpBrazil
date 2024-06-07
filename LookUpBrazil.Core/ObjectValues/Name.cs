@@ -8,6 +8,14 @@ namespace LookUpBrazil.Core.ObjectValues
 {
     public class Name
     {
+        public Name(string textCompleted)
+        {
+            TextCompleted = textCompleted;
+        }
+        public Name()
+        {
+        }
+
         public string TextCompleted { get; set; } = string.Empty;
     }
 }
