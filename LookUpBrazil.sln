@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LookUpBrazil.Api", "LookUpB
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LookUpBrazil.Core", "LookUpBrazil.Core\LookUpBrazil.Core.csproj", "{B0E25A1D-38AB-427B-A8EC-6270B45888F7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LookUpBrazil.Test", "LookUpBrazil.Test\LookUpBrazil.Test.csproj", "{19D5046A-9776-4885-AFCC-2D06187F771E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{B0E25A1D-38AB-427B-A8EC-6270B45888F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B0E25A1D-38AB-427B-A8EC-6270B45888F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B0E25A1D-38AB-427B-A8EC-6270B45888F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19D5046A-9776-4885-AFCC-2D06187F771E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19D5046A-9776-4885-AFCC-2D06187F771E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19D5046A-9776-4885-AFCC-2D06187F771E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19D5046A-9776-4885-AFCC-2D06187F771E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
