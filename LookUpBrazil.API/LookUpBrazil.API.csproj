@@ -29,4 +29,8 @@
     <Folder Include="wwwroot\Images\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\LookUpBrazil.Core\LookUpBrazil.Core.csproj" />
+  </ItemGroup>
+
 </Project>
