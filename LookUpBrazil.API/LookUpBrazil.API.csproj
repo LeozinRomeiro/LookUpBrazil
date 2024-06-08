@@ -5,7 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <!--<InvariantGlobalization>true</InvariantGlobalization>-->
-    <UserSecretsId>aspnet-LookUpBrazil.API-fa6528b5-b016-4d1b-b108-3594f63a7a1c</UserSecretsId>
+    <UserSecretsId>aspnet-LookUpBrazil.Api-fa6528b5-b016-4d1b-b108-3594f63a7a1c</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace LookUpBrazil.API.Migrations
+namespace LookUpBrazil.Api.Migrations
 {
     /// <inheritdoc />
     public partial class Update12012024 : Migration

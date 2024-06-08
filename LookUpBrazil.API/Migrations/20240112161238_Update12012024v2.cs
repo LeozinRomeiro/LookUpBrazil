@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace LookUpBrazil.API.Migrations
+namespace LookUpBrazil.Api.Migrations
 {
     /// <inheritdoc />
     public partial class Update12012024v2 : Migration

@@ -5,23 +5,23 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using LookUpBrazil.API.Data;
-using LookUpBrazil.API.Models;
-using LookUpBrazil.API.ViewModels;
-using LookUpBrazil.API.Extension;
+using LookUpBrazil.Api.Data;
+using LookUpBrazil.Api.Models;
+using LookUpBrazil.Api.ViewModels;
+using LookUpBrazil.Api.Extension;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using LookUpBrazil.API.ViewModels.Locations;
+using LookUpBrazil.Api.ViewModels.Locations;
 
-namespace LookUpBrazil.API.Controllers
+namespace LookUpBrazil.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("Api/[controller]")]
     [ApiController]
     public class LocationController : ControllerBase
     {
-        // GET: api/Location
+        // GET: Api/Location
         [HttpGet]
         public async Task<ActionResult> GetAsync(
-            [FromServices] LookUpBrazilAPIContext context,
+            [FromServices] LookUpBrazilApiContext context,
             [FromQuery] int page = 0, [FromQuery] int pageSize = 20)
         {
             try
@@ -49,11 +49,11 @@ namespace LookUpBrazil.API.Controllers
             }
         }
 
-        // GET: api/Location/Category
+        // GET: Api/Location/Category
         [HttpGet("Category/{category}")]
         public async Task<ActionResult> GetByCategoryAsync(
             [FromRoute] string category,
-            [FromServices] LookUpBrazilAPIContext context,
+            [FromServices] LookUpBrazilApiContext context,
             [FromQuery] int page = 0, [FromQuery] int pageSize = 20)
         {
             try
@@ -82,11 +82,11 @@ namespace LookUpBrazil.API.Controllers
             }
         }
 
-        // GET: api/Location/5
+        // GET: Api/Location/5
         [HttpGet("{id}")]
         public async Task<ActionResult> GetLocation(
             [FromRoute] Guid id,
-            [FromServices] LookUpBrazilAPIContext context)
+            [FromServices] LookUpBrazilApiContext context)
         {
             try
             {
@@ -104,12 +104,12 @@ namespace LookUpBrazil.API.Controllers
             }
         }
 
-        // PUT: api/Locations/5
+        // PUT: Api/Locations/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutLocation(
             Guid id,
             [FromBody] EditorLocationViewModel model,
-            [FromServices] LookUpBrazilAPIContext context)
+            [FromServices] LookUpBrazilApiContext context)
             
         {
             if (!ModelState.IsValid)
@@ -143,11 +143,11 @@ namespace LookUpBrazil.API.Controllers
 
         }
 
-        // POST: api/Locations
+        // POST: Api/Locations
         [HttpPost]
         public async Task<ActionResult<Location>> PostLocation(
             [FromBody] EditorLocationViewModel model,
-            [FromServices] LookUpBrazilAPIContext context)
+            [FromServices] LookUpBrazilApiContext context)
         {
             if (!ModelState.IsValid)
                 return BadRequest(new ResultViewModel<Location>(ModelState.GetErrors()));
@@ -163,7 +163,7 @@ namespace LookUpBrazil.API.Controllers
                 await context.Locations.AddAsync(location);
                 await context.SaveChangesAsync();
 
-                return Created($"api/Location/{location.Id}", new ResultViewModel<Location>(location));
+                return Created($"Api/Location/{location.Id}", new ResultViewModel<Location>(location));
             }
             catch (DbUpdateException)
             {
@@ -175,11 +175,11 @@ namespace LookUpBrazil.API.Controllers
             }
         }
 
-        // DELETE: api/Locations/5
+        // DELETE: Api/Locations/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteLocation(
             [FromBody] Guid id,
-            [FromServices] LookUpBrazilAPIContext context)
+            [FromServices] LookUpBrazilApiContext context)
         {
             try
             {

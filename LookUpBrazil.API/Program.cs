@@ -3,17 +3,19 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Identity.Web;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using LookUpBrazil.API.Data;
+using LookUpBrazil.Api.Data;
 using System.Globalization;
 using Microsoft.AspNetCore.Localization;
-using LookUpBrazil.API.Services;
+using LookUpBrazil.Api.Services;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
-using LookUpBrazil.API;
+using LookUpBrazil.Api;
 using System.Net.Mail;
 using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.ResponseCompression;
 using System.IO.Compression;
+using LookUpBrazil.Api.Handler;
+using LookUpBrazil.Core.Handler;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -53,8 +55,8 @@ app.Run();
 
 void LoadConfiguration(WebApplication app)
 {
-    Configuration.KeyAPI = app.Configuration.GetValue<string>("KeyAPI");
-    Configuration.NameAPI = app.Configuration.GetValue<string>("NameAPI");
+    Configuration.KeyApi = app.Configuration.GetValue<string>("KeyApi");
+    Configuration.NameApi = app.Configuration.GetValue<string>("NameApi");
     Configuration.JwtKey = app.Configuration.GetValue<string>("JwtKey");
 
     //var smtp = new Configuration.SmtpConfiguration();
@@ -107,13 +109,14 @@ void ConfigureMVC(WebApplicationBuilder builder)
 
 void ConfigureServices(WebApplicationBuilder builder)
 {
-    builder.Services.AddDbContext<LookUpBrazilAPIContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string não informada.")));
+    builder.Services.AddDbContext<LookUpBrazilApiContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string nï¿½o informada.")));
 
     builder.Services.AddTransient<TokenService>();
     builder.Services.AddTransient<EmailService>();
+    builder.Services.AddTransient<ICityHandler,CityHandler>();
 
-    // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+    // Learn more about configuring Swagger/OpenApi at https://aka.ms/aspnetcore/swashbuckle
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
 }

@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.Extensions.Hosting;
 
-namespace LookUpBrazil.API.Models
+namespace LookUpBrazil.Api.Models
 {
     public class Category
     {

@@ -1,4 +1,4 @@
-﻿namespace LookUpBrazil.API.ViewModels
+﻿namespace LookUpBrazil.Api.ViewModels
 {
     public class ResultViewModel<T>
     {

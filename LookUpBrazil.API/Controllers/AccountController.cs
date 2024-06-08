@@ -1,9 +1,9 @@
-﻿using LookUpBrazil.API.Data;
-using LookUpBrazil.API.Extension;
-using LookUpBrazil.API.Models;
-using LookUpBrazil.API.Services;
-using LookUpBrazil.API.ViewModels;
-using LookUpBrazil.API.ViewModels.Accounts;
+﻿using LookUpBrazil.Api.Data;
+using LookUpBrazil.Api.Extension;
+using LookUpBrazil.Api.Models;
+using LookUpBrazil.Api.Services;
+using LookUpBrazil.Api.ViewModels;
+using LookUpBrazil.Api.ViewModels.Accounts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -11,17 +11,17 @@ using Microsoft.EntityFrameworkCore;
 using SecureIdentity.Password;
 using System.Text.RegularExpressions;
 
-namespace LookUpBrazil.API.Controllers
+namespace LookUpBrazil.Api.Controllers
 {
     [Authorize]
-    [Route("api/[controller]")]
+    [Route("Api/[controller]")]
     [ApiController]
     public class AccountController : ControllerBase
     {
         [HttpPost]
         public async Task<IActionResult> PostAsync(
             [FromBody] RegisterViewModel model,
-            [FromServices] LookUpBrazilAPIContext context)
+            [FromServices] LookUpBrazilApiContext context)
         {
             if (!ModelState.IsValid)
             {
@@ -58,7 +58,7 @@ namespace LookUpBrazil.API.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> LoginAsync(
             [FromBody] LoginViewModel model,
-            [FromServices] LookUpBrazilAPIContext context,
+            [FromServices] LookUpBrazilApiContext context,
             [FromServices] TokenService tokenService)
         {
             if (!ModelState.IsValid)
@@ -93,7 +93,7 @@ namespace LookUpBrazil.API.Controllers
         [HttpPost("upload-image")]
         public async Task<IActionResult> UploadImageAsync(
             [FromBody] UploadImageViewModel model,
-            [FromServices] LookUpBrazilAPIContext context)
+            [FromServices] LookUpBrazilApiContext context)
         {
             var fileName = $"{Guid.NewGuid().ToString()}.jpg";
             var data = new Regex(@"^data:image\/[a-z]+;base64,").Replace(model.Base64Image, "");

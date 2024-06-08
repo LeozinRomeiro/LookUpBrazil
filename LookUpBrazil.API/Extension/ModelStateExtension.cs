@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
 
-namespace LookUpBrazil.API.Extension
+namespace LookUpBrazil.Api.Extension
 {
     public static class ModelStateExtension
     {

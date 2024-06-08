@@ -51,7 +51,7 @@ else
     protected override async Task OnInitializedAsync()
     {
         var client = new RestClient();
-        var request = new RestRequest($"{Configuration.ApiUrl}/api/Category");
+        var request = new RestRequest($"{Configuration.ApiUrl}/Api/Category");
         var result = await client.GetAsync<List<CategoryViewModel>?>(request);
 
         if (result != null)
@@ -63,7 +63,7 @@ else
     private async Task PostAsync()
     {
         var client = new RestClient();
-        var request = new RestRequest($"{Configuration.ApiUrl}/api/Category").AddJsonBody(categoryPost);
+        var request = new RestRequest($"{Configuration.ApiUrl}/Api/Category").AddJsonBody(categoryPost);
         var categoryCreate = await client.PostAsync<CategoryViewModel?>(request);
 
         if(categoryCreate is not null)
@@ -75,7 +75,7 @@ else
     private async Task GetAsync(Guid id)
     {
         var client = new RestClient();
-        var request = new RestRequest($"{Configuration.ApiUrl}/api/Category{id}");
+        var request = new RestRequest($"{Configuration.ApiUrl}/Api/Category{id}");
         var result = await client.GetAsync<CategoryViewModel?>(request);
 
         if (result != null)

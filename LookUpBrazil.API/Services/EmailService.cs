@@ -1,7 +1,7 @@
 ﻿using System.Net;
 using System.Net.Mail;
 
-namespace LookUpBrazil.API.Services
+namespace LookUpBrazil.Api.Services
 {
     public class EmailService
     {

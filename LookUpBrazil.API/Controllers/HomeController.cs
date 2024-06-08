@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace LookUpBrazil.API.Controllers
+namespace LookUpBrazil.Api.Controllers
 {
-    [Route("api")]
+    [Route("Api")]
     [ApiController]
     public class HomeController : ControllerBase
     {

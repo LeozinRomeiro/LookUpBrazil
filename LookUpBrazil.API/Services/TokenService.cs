@@ -1,11 +1,11 @@
-﻿using LookUpBrazil.API.Extension;
-using LookUpBrazil.API.Models;
+﻿using LookUpBrazil.Api.Extension;
+using LookUpBrazil.Api.Models;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace LookUpBrazil.API.Services
+namespace LookUpBrazil.Api.Services
 {
     public class TokenService
     {

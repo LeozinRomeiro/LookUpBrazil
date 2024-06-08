@@ -1,9 +1,9 @@
-﻿using LookUpBrazil.API.Models;
+﻿using LookUpBrazil.Api.Models;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Collections;
 using System.Security.Claims;
 
-namespace LookUpBrazil.API.Extension
+namespace LookUpBrazil.Api.Extension
 {
     public static class RoleClaimsExtension
     {

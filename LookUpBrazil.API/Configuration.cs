@@ -1,10 +1,10 @@
-﻿namespace LookUpBrazil.API
+﻿namespace LookUpBrazil.Api
 {
     public class Configuration
     {
         public static string JwtKey { get; set; } = "leo";
-        public static string NameAPI = "Chave Secreta";
-        public static string KeyAPI = "fds34dsd2354ewfrw";
+        public static string NameApi = "Chave Secreta";
+        public static string KeyApi = "fds34dsd2354ewfrw";
         public static SmtpConfiguration Smtp = new();
 
         public class SmtpConfiguration

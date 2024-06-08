@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LookUpBrazil.Core.ObjectValues
+namespace LookUpBrazil.Core
 {
-    public class City : Entity
+    public abstract class Entity 
     {
-        public Name Name { get; set; }
+        public Guid Id { get; set; }
     }
 }

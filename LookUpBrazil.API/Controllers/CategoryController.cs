@@ -1,24 +1,24 @@
-﻿using LookUpBrazil.API.Data;
-using LookUpBrazil.API.Extension;
-using LookUpBrazil.API.ViewModels.Locations;
-using LookUpBrazil.API.ViewModels;
+﻿using LookUpBrazil.Api.Data;
+using LookUpBrazil.Api.Extension;
+using LookUpBrazil.Api.ViewModels.Locations;
+using LookUpBrazil.Api.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using LookUpBrazil.API.Models;
+using LookUpBrazil.Api.Models;
 using Microsoft.Extensions.Caching.Memory;
 
-namespace LookUpBrazil.API.Controllers
+namespace LookUpBrazil.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("Api/[controller]")]
     [ApiController]
     public class CategoryController : ControllerBase
     {
-        // GET: api/Category
+        // GET: Api/Category
         [HttpGet]
         public async Task<ActionResult> GetAsync(
             [FromServices] IMemoryCache memoryCache,    
-            [FromServices] LookUpBrazilAPIContext context,
+            [FromServices] LookUpBrazilApiContext context,
             [FromQuery] int page = 0, [FromQuery] int pageSize = 20)
         {
             try
@@ -49,11 +49,11 @@ namespace LookUpBrazil.API.Controllers
             }
         }
 
-        // GET: api/Category/5
+        // GET: Api/Category/5
         [HttpGet("{id}")]
         public async Task<ActionResult> GetCategory(
             [FromRoute] Guid id,
-            [FromServices] LookUpBrazilAPIContext context)
+            [FromServices] LookUpBrazilApiContext context)
         {
             try
             {
@@ -71,11 +71,11 @@ namespace LookUpBrazil.API.Controllers
             }
         }
 
-        // POST: api/Category
+        // POST: Api/Category
         [HttpPost]
         public async Task<ActionResult<Category>> PostCategory(
             [FromBody] EditorCategoryViewModel model,
-            [FromServices] LookUpBrazilAPIContext context)
+            [FromServices] LookUpBrazilApiContext context)
         {
             if (!ModelState.IsValid)
                 return BadRequest(new ResultViewModel<Category>(ModelState.GetErrors()));
@@ -88,7 +88,7 @@ namespace LookUpBrazil.API.Controllers
                 await context.Categories.AddAsync(category);
                 await context.SaveChangesAsync();
 
-                return Created($"api/Category/{category.Id}", new ResultViewModel<Category>(category));
+                return Created($"Api/Category/{category.Id}", new ResultViewModel<Category>(category));
             }
             catch (DbUpdateException)
             {
@@ -100,12 +100,12 @@ namespace LookUpBrazil.API.Controllers
             }
         }
 
-        // PUT: api/Category/5
+        // PUT: Api/Category/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCategory(
             Guid id,
             [FromBody] EditorCategoryViewModel model,
-            [FromServices] LookUpBrazilAPIContext context)
+            [FromServices] LookUpBrazilApiContext context)
 
         {
             if (!ModelState.IsValid)
@@ -135,11 +135,11 @@ namespace LookUpBrazil.API.Controllers
             }
         }
 
-        // DELETE: api/Category/5
+        // DELETE: Api/Category/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCategory(
             Guid id,
-            [FromServices] LookUpBrazilAPIContext context)
+            [FromServices] LookUpBrazilApiContext context)
         {
 
             try

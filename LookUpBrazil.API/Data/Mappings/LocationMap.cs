@@ -1,8 +1,8 @@
-﻿using LookUpBrazil.API.Models;
+﻿using LookUpBrazil.Api.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace LookUpBrazil.API.Data.Mappings
+namespace LookUpBrazil.Api.Data.Mappings
 {
     public class LocationMap : IEntityTypeConfiguration<Location>
     {

@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
-using LookUpBrazil.API.Models;
+using LookUpBrazil.Api.Models;
 
-namespace LookUpBrazil.API.Data.Mappings
+namespace LookUpBrazil.Api.Data.Mappings
 {
     public class UserMap : IEntityTypeConfiguration<User>
     {

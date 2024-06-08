@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace LookUpBrazil.API.ViewModels.Accounts
+namespace LookUpBrazil.Api.ViewModels.Accounts
 {
     public class UploadImageViewModel
     {

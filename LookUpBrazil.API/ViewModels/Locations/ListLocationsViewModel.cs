@@ -1,4 +1,4 @@
-﻿namespace LookUpBrazil.API.ViewModels.Locations
+﻿namespace LookUpBrazil.Api.ViewModels.Locations
 {
     public class ListLocationsViewModel
     {

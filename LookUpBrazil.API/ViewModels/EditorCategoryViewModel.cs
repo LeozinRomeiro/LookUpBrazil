@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace LookUpBrazil.API.ViewModels
+namespace LookUpBrazil.Api.ViewModels
 {
     public class EditorCategoryViewModel
     {

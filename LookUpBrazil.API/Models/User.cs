@@ -1,4 +1,4 @@
-﻿namespace LookUpBrazil.API.Models
+﻿namespace LookUpBrazil.Api.Models
 {
     public class User
     {
