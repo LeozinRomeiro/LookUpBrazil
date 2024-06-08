@@ -13,14 +13,14 @@ namespace LookUpBrazil.Api.Handler
         {
             try
             {
-                var city = await context.Cities.FirstAsync(x => x.Name.TextCompleted == request.Name.TextCompleted);
+                var city = await context.Cities.FirstOrDefaultAsync(x => x.Name.TextCompleted == request.Name.TextCompleted);
                 if (city == null)
                     return new Response<City?>(null, 300, "Cidade não é valida");
                 return new Response<City?>(city);
             }
-            catch
+            catch(Exception e)
             {
-                return new Response<City?>(null, 500, "Falha no servidor");
+                return new Response<City?>(null, 500, "Falha no servidor: "+e.Message);
             }
         }
     }

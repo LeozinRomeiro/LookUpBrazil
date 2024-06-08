@@ -1,5 +1,5 @@
 ﻿using LookUpBrazil.Api.ViewModels.Locations;
-using LookUpBrazil.Api.Handler;
+using LookUpBrazil.Core.Handler;
 using Microsoft.AspNetCore.Mvc;
 using LookUpBrazil.Api.Data;
 using LookUpBrazil.Core.Responses;
@@ -15,7 +15,7 @@ namespace LookUpBrazil.Api.Controllers
         [HttpPost]
         public async Task<IResult> PostValidCity(
             [FromBody] ValidCityRequest request,
-            [FromServices] CityHandler handler,
+            [FromServices] ICityHandler handler,
             [FromServices] LookUpBrazilApiContext context)
         {
             var result = await handler.ValidAsync(request);

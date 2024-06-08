@@ -23,7 +23,7 @@ public class CityTest
 
         if (city is null)
         {
-            response = new Response<City?>(null, 300, "Cidade não é valida");
+            response = new Response<City?>(null, 300, "Cidade nao e valida");
         }
         else
         {
