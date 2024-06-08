@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace LookUpBrazil.Api.Migrations
 {
     /// <inheritdoc />
-    public partial class Update12012024 : Migration
+    public partial class update08062024 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -21,6 +21,20 @@ namespace LookUpBrazil.Api.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Categories", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "City",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    States = table.Column<string>(type: "NVARCHAR(2)", maxLength: 2, nullable: false),
+                    Name = table.Column<string>(type: "NVARCHAR(80)", maxLength: 80, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_City", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -110,6 +124,9 @@ namespace LookUpBrazil.Api.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "City");
+
             migrationBuilder.DropTable(
                 name: "Location");
 

@@ -14,6 +14,7 @@ namespace LookUpBrazil.Api.Data.Mappings
             //    .UseIdentityColumn();
 
             builder.HasKey(x => x.Id);
+            builder.Property(x => x.Id).ValueGeneratedOnAdd().UseIdentityColumn();
 
             builder.OwnsOne(x => x.Name, name =>
             {
@@ -22,6 +23,15 @@ namespace LookUpBrazil.Api.Data.Mappings
                     .HasColumnName("Name")
                     .HasColumnType("NVARCHAR")
                     .HasMaxLength(80);
+            });
+
+            builder.OwnsOne(x => x.States, states =>
+            {
+                states.Property(n => n.Acronym)
+                    .IsRequired()
+                    .HasColumnName("States")
+                    .HasColumnType("NVARCHAR")
+                    .HasMaxLength(2);
             });
         }
     }

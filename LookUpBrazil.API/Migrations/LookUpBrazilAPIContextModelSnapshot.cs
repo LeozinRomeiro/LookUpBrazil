@@ -124,9 +124,11 @@ namespace LookUpBrazil.Api.Migrations
 
             modelBuilder.Entity("LookUpBrazil.Core.ObjectValues.City", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.HasKey("Id");
 
@@ -164,8 +166,8 @@ namespace LookUpBrazil.Api.Migrations
                 {
                     b.OwnsOne("LookUpBrazil.Core.ObjectValues.Name", "Name", b1 =>
                         {
-                            b1.Property<Guid>("CityId")
-                                .HasColumnType("uniqueidentifier");
+                            b1.Property<int>("CityId")
+                                .HasColumnType("int");
 
                             b1.Property<string>("TextCompleted")
                                 .IsRequired()
@@ -181,7 +183,29 @@ namespace LookUpBrazil.Api.Migrations
                                 .HasForeignKey("CityId");
                         });
 
+                    b.OwnsOne("LookUpBrazil.Core.ObjectValues.States", "States", b1 =>
+                        {
+                            b1.Property<int>("CityId")
+                                .HasColumnType("int");
+
+                            b1.Property<string>("Acronym")
+                                .IsRequired()
+                                .HasMaxLength(2)
+                                .HasColumnType("NVARCHAR")
+                                .HasColumnName("States");
+
+                            b1.HasKey("CityId");
+
+                            b1.ToTable("City");
+
+                            b1.WithOwner()
+                                .HasForeignKey("CityId");
+                        });
+
                     b.Navigation("Name")
+                        .IsRequired();
+
+                    b.Navigation("States")
                         .IsRequired();
                 });
 

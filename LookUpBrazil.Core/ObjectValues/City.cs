@@ -8,6 +8,7 @@ namespace LookUpBrazil.Core.ObjectValues
 {
     public class City : Entity
     {
+        public States States { get; set; }
         public Name Name { get; set; }
     }
 }

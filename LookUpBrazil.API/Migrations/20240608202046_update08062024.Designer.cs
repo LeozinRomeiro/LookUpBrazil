@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LookUpBrazil.Api.Migrations
 {
     [DbContext(typeof(LookUpBrazilApiContext))]
-    [Migration("20240112161203_Update12012024")]
-    partial class Update12012024
+    [Migration("20240608202046_update08062024")]
+    partial class update08062024
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -125,6 +125,19 @@ namespace LookUpBrazil.Api.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("LookUpBrazil.Core.ObjectValues.City", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.HasKey("Id");
+
+                    b.ToTable("City", (string)null);
+                });
+
             modelBuilder.Entity("UserRole", b =>
                 {
                     b.Property<int>("RoleId")
@@ -150,6 +163,53 @@ namespace LookUpBrazil.Api.Migrations
                         .HasConstraintName("FK_Location_Category");
 
                     b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("LookUpBrazil.Core.ObjectValues.City", b =>
+                {
+                    b.OwnsOne("LookUpBrazil.Core.ObjectValues.Name", "Name", b1 =>
+                        {
+                            b1.Property<int>("CityId")
+                                .HasColumnType("int");
+
+                            b1.Property<string>("TextCompleted")
+                                .IsRequired()
+                                .HasMaxLength(80)
+                                .HasColumnType("NVARCHAR")
+                                .HasColumnName("Name");
+
+                            b1.HasKey("CityId");
+
+                            b1.ToTable("City");
+
+                            b1.WithOwner()
+                                .HasForeignKey("CityId");
+                        });
+
+                    b.OwnsOne("LookUpBrazil.Core.ObjectValues.States", "States", b1 =>
+                        {
+                            b1.Property<int>("CityId")
+                                .HasColumnType("int");
+
+                            b1.Property<string>("Acronym")
+                                .IsRequired()
+                                .HasMaxLength(2)
+                                .HasColumnType("NVARCHAR")
+                                .HasColumnName("States");
+
+                            b1.HasKey("CityId");
+
+                            b1.ToTable("City");
+
+                            b1.WithOwner()
+                                .HasForeignKey("CityId");
+                        });
+
+                    b.Navigation("Name")
+                        .IsRequired();
+
+                    b.Navigation("States")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("UserRole", b =>

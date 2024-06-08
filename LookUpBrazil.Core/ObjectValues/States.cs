@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LookUpBrazil.Core
+namespace LookUpBrazil.Core.ObjectValues
 {
-    public abstract class Entity 
+    public class States
     {
-        public int Id { get; set; }
+        public string Acronym { get; set; }
     }
 }
