@@ -21,5 +21,20 @@ namespace LookUpBrazil.Test.Repositories
 
             return Cities.First(x=>x.Name.TextCompleted == TextCompleted);
         }
+
+        public List<City>? GetCitiesByLetter(char letter)
+        {
+            City city = new City
+            {
+                Name = new Name("Maringa")
+            };
+
+            var cities = new List<City>
+            {
+                city
+            };
+
+            return cities;
+        }
     }
 }
