@@ -8,6 +8,6 @@ namespace LookUpBrazil.Core.ObjectValues
 {
     public class States
     {
-        public string Acronym { get; set; }
+        public string Acronym { get; set; } = string.Empty;
     }
 }
