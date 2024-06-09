@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using LookUpBrazil.Api.Data.Mappings;
 using LookUpBrazil.Core.ObjectValues;
+using LookUpBrazil.Core.Entities;
 
 namespace LookUpBrazil.Api.Data
 {
@@ -21,6 +22,7 @@ namespace LookUpBrazil.Api.Data
         public DbSet<LookUpBrazil.Api.Models.Role> Roles { get; set; } = default!;
         public DbSet<LookUpBrazil.Api.Models.Category> Categories { get; set; } = default!;
         public DbSet<City> Cities { get; set; } = default!;
+        public DbSet<Game> Games { get; set; } = default!;
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace LookUpBrazil.Core.ObjectValues
 {
-    public class City : Entity
+    public class City
     {
-        public States States { get; set; }
-        public Name Name { get; set; }
+        public int Id { get; set; }
+        public States States { get; set; } = null!;
+        public Name Name { get; set; } = null!;
     }
 }

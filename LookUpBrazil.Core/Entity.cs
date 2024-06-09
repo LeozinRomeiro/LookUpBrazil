@@ -8,6 +8,11 @@ namespace LookUpBrazil.Core
 {
     public abstract class Entity 
     {
-        public int Id { get; set; }
+        protected Entity()
+        {
+            Id = Guid.NewGuid();
+        }
+
+        public Guid Id { get; set; }
     }
 }
