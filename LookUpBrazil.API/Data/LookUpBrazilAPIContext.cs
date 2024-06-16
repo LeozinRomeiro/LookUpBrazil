@@ -30,6 +30,7 @@ namespace LookUpBrazil.Api.Data
             modelBuilder.ApplyConfiguration(new UserMap());
             modelBuilder.ApplyConfiguration(new LocationMap());
             modelBuilder.ApplyConfiguration(new CityMap());
+            modelBuilder.ApplyConfiguration(new GameMap());
         }
     }
 }
