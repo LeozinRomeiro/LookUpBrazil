@@ -1,4 +1,5 @@
-﻿using LookUpBrazil.Core.ObjectValues;
+﻿using LookUpBrazil.Core.Entities;
+using LookUpBrazil.Core.ObjectValues;
 using LookUpBrazil.Core.Requests.Game;
 using LookUpBrazil.Core.Responses;
 using System;
@@ -12,5 +13,6 @@ namespace LookUpBrazil.Core.Handler
     public interface IGameHandler
     {
         Task<Response<City?>> ValidAttemptAsync(AttemptRequest attempt);
+        Task<Response<Game>> GetGameAsync(GetGameRequest request);
     }
 }

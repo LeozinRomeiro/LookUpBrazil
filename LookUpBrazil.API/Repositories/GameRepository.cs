@@ -7,7 +7,7 @@ namespace LookUpBrazil.Api.Repositories
 {
     public class GameRepository(LookUpBrazilApiContext context) : IGameRepository
     {
-        public async Task<Game?> GetGameById(Guid id)
+        public async Task<Game?> GetGameById(Guid? id)
         {
             return await context.Games.FirstOrDefaultAsync(x=>x.Equals(id));
         }

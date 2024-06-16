@@ -15,8 +15,7 @@ namespace LookUpBrazil.Api.Controllers
         [HttpPost]
         public async Task<IResult> PostValidCity(
             [FromBody] ValidCityRequest request,
-            [FromServices] ICityHandler handler,
-            [FromServices] LookUpBrazilApiContext context)
+            [FromServices] ICityHandler handler)
         {
             var result = await handler.ValidAsync(request);
             return result.IsSuccess

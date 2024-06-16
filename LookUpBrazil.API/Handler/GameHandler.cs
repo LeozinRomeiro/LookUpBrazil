@@ -1,4 +1,5 @@
 ﻿using LookUpBrazil.Api.Repositories;
+using LookUpBrazil.Core.Entities;
 using LookUpBrazil.Core.Handler;
 using LookUpBrazil.Core.ObjectValues;
 using LookUpBrazil.Core.Requests.Game;
@@ -8,6 +9,18 @@ namespace LookUpBrazil.Api.Handler
 {
     public class GameHandler(CityRepository repository, GameRepository gameRepository) : IGameHandler
     {
+        public async Task<Response<Game>> GetGameAsync(GetGameRequest request)
+        {
+            try
+            {
+                var game = await gameRepository.GetGameById(request.GameId);
+                return new Response<Game>(game ?? new Game(), message: "A letra inicial precisa ser " + game.Requirement.InitialLetter);
+            }
+            catch (Exception e)
+            {
+                return new Response<Game>(null, 500, "Falha no servidor: " + e.Message);
+            }
+        }
         public async Task<Response<City?>> ValidAttemptAsync(AttemptRequest attempt)
         {
             try
