@@ -16,6 +16,8 @@ using Microsoft.AspNetCore.ResponseCompression;
 using System.IO.Compression;
 using LookUpBrazil.Api.Handler;
 using LookUpBrazil.Core.Handler;
+using LookUpBrazil.Core.Repositories;
+using LookUpBrazil.Api.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -114,7 +116,10 @@ void ConfigureServices(WebApplicationBuilder builder)
 
     builder.Services.AddTransient<TokenService>();
     builder.Services.AddTransient<EmailService>();
+    builder.Services.AddTransient<IGameRepository, GameRepository>();
+    builder.Services.AddTransient<ICityRepository, CityRepository>();
     builder.Services.AddTransient<ICityHandler,CityHandler>();
+    builder.Services.AddTransient<IGameHandler,GameHandler>();
 
     // Learn more about configuring Swagger/OpenApi at https://aka.ms/aspnetcore/swashbuckle
     builder.Services.AddEndpointsApiExplorer();

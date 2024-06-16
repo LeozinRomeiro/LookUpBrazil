@@ -11,5 +11,6 @@ namespace LookUpBrazil.Api.Repositories
         {
             return await context.Games.FirstOrDefaultAsync(x=>x.Equals(id));
         }
+
     }
 }

@@ -11,7 +11,7 @@ namespace LookUpBrazil.Test.Repositories
 {
     public class FakeGameRepository : IGameRepository
     {
-        public async Task<Game?> GetGameById(Guid id)
+        public async Task<Game?> GetGameById(Guid? id)
         {
             Game game;
             do

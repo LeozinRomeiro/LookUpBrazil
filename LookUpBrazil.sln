@@ -3,13 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LookUpBrazil", "LookUpBrazil\LookUpBrazil.csproj", "{B636814F-2C47-44EB-901E-125F60E90C23}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LookUpBrazil.Api", "LookUpBrazil.API\LookUpBrazil.Api.csproj", "{6C03D4BA-CFF3-4205-A54A-9260AB1F87F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LookUpBrazil.Core", "LookUpBrazil.Core\LookUpBrazil.Core.csproj", "{B0E25A1D-38AB-427B-A8EC-6270B45888F7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LookUpBrazil.Core", "LookUpBrazil.Core\LookUpBrazil.Core.csproj", "{B0E25A1D-38AB-427B-A8EC-6270B45888F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LookUpBrazil.Test", "LookUpBrazil.Test\LookUpBrazil.Test.csproj", "{19D5046A-9776-4885-AFCC-2D06187F771E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LookUpBrazil.Test", "LookUpBrazil.Test\LookUpBrazil.Test.csproj", "{19D5046A-9776-4885-AFCC-2D06187F771E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +15,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B636814F-2C47-44EB-901E-125F60E90C23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B636814F-2C47-44EB-901E-125F60E90C23}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B636814F-2C47-44EB-901E-125F60E90C23}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B636814F-2C47-44EB-901E-125F60E90C23}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6C03D4BA-CFF3-4205-A54A-9260AB1F87F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6C03D4BA-CFF3-4205-A54A-9260AB1F87F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6C03D4BA-CFF3-4205-A54A-9260AB1F87F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
