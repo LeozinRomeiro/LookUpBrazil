@@ -1,14 +1,23 @@
-﻿using LookUpBrazil.Api.Repositories;
-using LookUpBrazil.Core.Entities;
+﻿using LookUpBrazil.Core.Entities;
 using LookUpBrazil.Core.Handler;
 using LookUpBrazil.Core.ObjectValues;
+using LookUpBrazil.Core.Repositories;
 using LookUpBrazil.Core.Requests.Game;
 using LookUpBrazil.Core.Responses;
 
 namespace LookUpBrazil.Api.Handler
 {
-    public class GameHandler(CityRepository repository, GameRepository gameRepository) : IGameHandler
+    public class GameHandler : IGameHandler
     {
+        private readonly IGameRepository gameRepository;
+        private readonly ICityRepository cityRepository;
+
+        public GameHandler(IGameRepository gameRepository, ICityRepository cityRepository)
+        {
+            this.gameRepository = gameRepository;
+            this.cityRepository = cityRepository;
+        }
+
         public async Task<Response<Game>> GetGameAsync(GetGameRequest request)
         {
             try
@@ -26,7 +35,7 @@ namespace LookUpBrazil.Api.Handler
             try
             {
                 var game = await gameRepository.GetGameById(attempt.GameId);
-                var cities = await repository.GetCitiesByLetter(game.Requirement.InitialLetter.Text);
+                var cities = await cityRepository.GetCitiesByLetter(game.Requirement.InitialLetter.Text);
                 var city = cities.FirstOrDefault(x => x.Name.TextCompleted == attempt.Name.TextCompleted);
                 if (city == null)
                     return new Response<City?>(null, 300, "Cidade não é valida");
