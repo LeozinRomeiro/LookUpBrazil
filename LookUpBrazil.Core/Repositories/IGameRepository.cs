@@ -9,6 +9,7 @@ namespace LookUpBrazil.Core.Repositories
 {
     public interface IGameRepository
     {
-        Task<Game?> GetGameById(Guid? id);
+        Task<Game?> GetGameByIdAsync(Guid? id);
+        Task CreateGameAsync(Game game);
     }
 }

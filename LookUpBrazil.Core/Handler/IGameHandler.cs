@@ -14,5 +14,6 @@ namespace LookUpBrazil.Core.Handler
     {
         Task<Response<City?>> ValidAttemptAsync(AttemptRequest attempt);
         Task<Response<Game>> GetGameAsync(GetGameRequest request);
+        Task<Response<Game>> CreateGameAsync();
     }
 }

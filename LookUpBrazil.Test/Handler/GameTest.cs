@@ -18,7 +18,7 @@ namespace LookUpBrazil.Test.Handler
         [TestMethod]
         public async void DadoUmaTentativaCorretaDeveRetornarSucesso()
         {
-            var game = await GameRepository.GetGameById(Guid.NewGuid());
+            var game = await GameRepository.GetGameByIdAsync(Guid.NewGuid());
             var request = new AttemptRequest
             {
                 GameId = game.Id,

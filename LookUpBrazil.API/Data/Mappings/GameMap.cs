@@ -15,14 +15,17 @@ namespace LookUpBrazil.Api.Data.Mappings
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id);
 
-            builder.OwnsOne(x => x.Requirement.InitialLetter, name =>
+            builder.OwnsOne(x => x.Requirement, requirement =>
             {
-
-                name.Property(n => n.Text)
+                requirement.OwnsOne(x => x.InitialLetter, initialLetter =>
+                {
+                    initialLetter.Property(n => n.Text)
+                    .HasColumnName("InitialLetter")
                     .IsRequired()
                     .HasColumnName("Letter")
                     .HasColumnType("NVARCHAR")
                     .HasMaxLength(1);
+                });
             });
         }
     }

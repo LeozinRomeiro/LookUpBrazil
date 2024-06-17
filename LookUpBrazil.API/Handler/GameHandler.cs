@@ -18,16 +18,30 @@ namespace LookUpBrazil.Api.Handler
             this.cityRepository = cityRepository;
         }
 
+        public async Task<Response<Game>> CreateGameAsync()
+        {
+            try
+            {
+                var game = new Game();
+                await gameRepository.CreateGameAsync(game);
+                return new Response<Game>(game, message: "A letra inicial precisa ser " + game.Requirement.InitialLetter.Text);
+            }
+            catch (Exception e)
+            {
+                return new Response<Game>(null, 500, "Falha no servidor: " + e.Message);
+            }
+        }
+
         public async Task<Response<Game>> GetGameAsync(GetGameRequest request)
         {
             try
             {
-                var game = await gameRepository.GetGameById(request.GameId);
-                if (game is null)
+                var game = await gameRepository.GetGameByIdAsync(request.GameId);
+                if (game is not null)
                 {
-                    game = new Game();
+                    return new Response<Game>(game ?? new Game(), message: "A letra inicial precisa ser " + game.Requirement.InitialLetter.Text);
                 }
-                return new Response<Game>(game ?? new Game(), message: "A letra inicial precisa ser " + game.Requirement.InitialLetter);
+                return new Response<Game>(null, 300, "Codigo de game está invalido");
             }
             catch (Exception e)
             {
@@ -38,7 +52,7 @@ namespace LookUpBrazil.Api.Handler
         {
             try
             {
-                var game = await gameRepository.GetGameById(attempt.GameId);
+                var game = await gameRepository.GetGameByIdAsync(attempt.GameId);
                 var cities = await cityRepository.GetCitiesByLetter(game.Requirement.InitialLetter.Text);
                 var city = cities.FirstOrDefault(x => x.Name.TextCompleted == attempt.Name.TextCompleted);
                 if (city == null)

@@ -21,5 +21,15 @@ namespace LookUpBrazil.Api.Controllers
             ? TypedResults.Ok(result)
             : TypedResults.BadRequest(result);
         }
+
+        [HttpGet]
+        public async Task<IResult> CreateGame(
+        [FromServices] IGameHandler handler)
+        {
+            var result = await handler.CreateGameAsync();
+            return result.IsSuccess
+            ? TypedResults.Ok(result)
+            : TypedResults.BadRequest(result);
+        }
     }
 }
