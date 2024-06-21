@@ -12,7 +12,7 @@ namespace LookUpBrazil.Core.ObjectValues
         {
             Generate();
         }
-        public Letter? InitialLetter { get; private set; }
+        public Letter? InitialLetter { get; private set; } = null!;
 
         public void Generate() {
             InitialLetter = new Letter((Char)('A'+ new Random().Next(0, 26)));

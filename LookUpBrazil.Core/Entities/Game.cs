@@ -9,11 +9,19 @@ namespace LookUpBrazil.Core.Entities
 {
     public class Game : Entity
     {
-        public Game()
+        public Requirement Requirement { get; private set; } = new Requirement();
+        private List<Name> Names { get; set; } = new List<Name>();
+        public Game(List<Name> names)
         {
-            Requirement = new Requirement();
+            this.Names = names;
         }
-
-        public Requirement Requirement { get; private set; }
+        public bool Attempt(Name name)
+        {
+            if(Requirement.InitialLetter.Text == name.TextCompleted.InitialLetter.Text)
+            {
+                return Names.Contains(name);
+            }
+            return false;
+        }
     }
 }
