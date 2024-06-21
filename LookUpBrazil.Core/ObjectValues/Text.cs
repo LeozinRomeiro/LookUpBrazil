@@ -13,7 +13,7 @@ namespace LookUpBrazil.Core.ObjectValues
 
         public Text(string textCompleted)
         {
-            _textCompleted = textCompleted;
+            TextCompleted = textCompleted;
         }
         public Text()
         {

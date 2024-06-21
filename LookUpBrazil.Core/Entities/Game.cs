@@ -13,11 +13,11 @@ namespace LookUpBrazil.Core.Entities
         private List<Name> Names { get; set; } = new List<Name>();
         public Game(List<Name> names)
         {
-            this.Names = names;
+            this.Names = names.Where(x=>x.Text.InitialLetter.Text==Requirement.InitialLetter.Text).ToList();
         }
         public bool Attempt(Name name)
         {
-            if(Requirement.InitialLetter.Text == name.TextCompleted.InitialLetter.Text)
+            if(Requirement.InitialLetter.Text == name.Text.InitialLetter.Text)
             {
                 return Names.Contains(name);
             }

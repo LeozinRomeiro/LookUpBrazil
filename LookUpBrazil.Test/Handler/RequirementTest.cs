@@ -17,9 +17,9 @@ namespace LookUpBrazil.Test.Handler
             do
             {
                 requirement = new Requirement();
-            } while (requirement.InitialLetter == new Letter('M'));
+            } while (requirement.InitialLetter.Text != new Letter('M').Text);
 
-            Assert.AreEqual(requirement.InitialLetter, new Letter('M'));
+            Assert.AreEqual(requirement.InitialLetter.Text, new Letter('M').Text);
         }
     }
 }

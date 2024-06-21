@@ -10,12 +10,12 @@ namespace LookUpBrazil.Core.ObjectValues
     {
         public Name(string textCompleted)
         {
-            TextCompleted = new Text(textCompleted);
+            Text = new Text(textCompleted);
         }
         public Name()
         {
         }
 
-        public Text TextCompleted { get; set; } = new Text();
+        public Text Text { get; set; } = new Text();
     }
 }

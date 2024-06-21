@@ -13,42 +13,77 @@ using System.Threading.Tasks;
 
 namespace LookUpBrazil.Test.Handler
 {
+    [TestClass]
     public class GameHandlerTest
     {
         public FakeCityRepository CityRepository = new FakeCityRepository();
-        public FakeGameRepository GameRepository = new FakeGameRepository();
+        //public FakeGameRepository GameRepository = new FakeGameRepository();
 
-        public Task<Response<Game>> CreateGameAsync()
-        {
-            throw new NotImplementedException();
-        }
         [TestMethod]
-        public async void DadoUmaTentativaCorretaDeveRetornarSucesso()
+        public void DadoUmaTentativaCorretaDeveRetornarSucesso()
         {
-            var game = await GameRepository.GetGameByIdAsync(Guid.NewGuid());
+            var cities = CityRepository.GetCitiesByLetter();
+
+            List<Name> names = new();
+            foreach (var city in cities)
+            {
+                names.Add(city.Name);
+            }
+
+            var game = new Game(names);
+
             var request = new AttemptRequest
             {
                 GameId = game.Id,
-                Name = new Name("Maringa")
+                Name = names.First(x=>x.Text.InitialLetter.Text==game.Requirement.InitialLetter.Text),
             };
 
-            var cities = CityRepository.GetCitiesByLetter(game.Requirement.InitialLetter.Text);
+            Response<Name> response;
 
-            var city = CityRepository.CityExists(request.Name.TextCompleted);
-
-            Response<City?> response;
-
-            if (city is null)
+            if (!game.Attempt(request.Name))
             {
-                response = new Response<City?>(null, 300, "Cidade nao e valida");
+                response = new Response<Name>(null, 300, "Cidade nao e valida");
             }
             else
             {
-                response = new Response<City?>(city);
+                response = new Response<Name>(request.Name);
             }
 
             Assert.IsTrue(response.IsSuccess);
-        //}
+        }
+
+        [TestMethod]
+        public void DadoUmaTentativaIncorretaDeveRetornarSucesso()
+        {
+            var cities = CityRepository.GetCitiesByLetter();
+
+            List<Name> names = new();
+            foreach (var city in cities)
+            {
+                names.Add(city.Name);
+            }
+
+            var game = new Game(names);
+
+            var request = new AttemptRequest
+            {
+                GameId = game.Id,
+                Name = names.First(x => x.Text.InitialLetter.Text != game.Requirement.InitialLetter.Text),
+            };
+
+            Response<Name> response;
+
+            if (!game.Attempt(request.Name))
+            {
+                response = new Response<Name>(null, 300, "Cidade nao e valida");
+            }
+            else
+            {
+                response = new Response<Name>(request.Name);
+            }
+
+            Assert.IsFalse(response.IsSuccess);
+        }
         //[TestMethod]
         //public async void DadoUmaTentativaCorretaDeveRetornarSucesso()
         //{
