@@ -38,15 +38,15 @@ namespace LookUpBrazil.Test.Handler
                 Name = names.First(x=>x.Text.InitialLetter.Text==game.Requirement.InitialLetter.Text),
             };
 
-            Response<Name> response;
+            Response<bool> response;
 
             if (!game.Attempt(request.Name))
             {
-                response = new Response<Name>(null, 300, "Cidade nao e valida");
+                response = new Response<bool>(false, 300, "Cidade nao e valida");
             }
             else
             {
-                response = new Response<Name>(request.Name);
+                response = new Response<bool>(game.Finish);
             }
 
             Assert.IsTrue(response.IsSuccess);
@@ -71,19 +71,60 @@ namespace LookUpBrazil.Test.Handler
                 Name = names.First(x => x.Text.InitialLetter.Text != game.Requirement.InitialLetter.Text),
             };
 
-            Response<Name> response;
+            Response<bool> response;
 
             if (!game.Attempt(request.Name))
             {
-                response = new Response<Name>(null, 300, "Cidade nao e valida");
+                response = new Response<bool>(false, 300, "Cidade nao e valida");
             }
             else
             {
-                response = new Response<Name>(request.Name);
+                response = new Response<bool>(game.Finish);
             }
 
             Assert.IsFalse(response.IsSuccess);
         }
+
+        [TestMethod]
+        public void AcertandoTodasAsCidadesGameDeveApontarFinish()
+        {
+            var cities = CityRepository.GetCitiesByLetter();
+
+            List<Name> names = new();
+            foreach (var city in cities)
+            {
+                names.Add(city.Name);
+            }
+
+            var game = new Game(names);
+
+            bool LastAttempt = false;
+
+            foreach (var name in names.Where(x => x.Text.InitialLetter.Text == game.Requirement.InitialLetter.Text))
+            {
+                var request = new AttemptRequest
+                {
+                    GameId = game.Id,
+                    Name = name,
+                };
+
+                LastAttempt = !game.Attempt(request.Name);
+            }
+
+            Response<bool> response;
+
+            if (!LastAttempt)
+            {
+                response = new Response<bool>(false, 300, "Cidade nao e valida");
+            }
+            else
+            {
+                response = new Response<bool>(game.Finish);
+            }
+
+            Assert.IsTrue(game.Finish);
+        }
+
         //[TestMethod]
         //public async void DadoUmaTentativaCorretaDeveRetornarSucesso()
         //{

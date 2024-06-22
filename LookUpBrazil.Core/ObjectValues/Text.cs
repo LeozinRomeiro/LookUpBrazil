@@ -17,6 +17,7 @@ namespace LookUpBrazil.Core.ObjectValues
         }
         public Text()
         {
+            TextCompleted = string.Empty;
         }
         public string TextCompleted
         {

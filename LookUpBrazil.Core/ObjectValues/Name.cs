@@ -14,8 +14,8 @@ namespace LookUpBrazil.Core.ObjectValues
         }
         public Name()
         {
+            Text = new Text(string.Empty);
         }
-
         public Text Text { get; set; } = new Text();
     }
 }

@@ -10,16 +10,20 @@ namespace LookUpBrazil.Core.Entities
     public class Game : Entity
     {
         public Requirement Requirement { get; private set; } = new Requirement();
-        private List<Name> Names { get; set; } = new List<Name>();
+        private List<Name> SecretNames { get; set; } = new List<Name>();
+        public List<Name> MatchedNames { get; set; } = new List<Name>();
+        public bool Finish => SecretNames.Count() == 0;
         public Game(List<Name> names)
         {
-            this.Names = names.Where(x=>x.Text.InitialLetter.Text==Requirement.InitialLetter.Text).ToList();
+            this.SecretNames = names.Where(x=>x.Text.InitialLetter.Text==Requirement.InitialLetter.Text).ToList();
         }
         public bool Attempt(Name name)
         {
-            if(Requirement.InitialLetter.Text == name.Text.InitialLetter.Text)
+            if(Requirement.InitialLetter.Text == name.Text.InitialLetter.Text || SecretNames.Contains(name))
             {
-                return Names.Contains(name);
+                MatchedNames.Add(SecretNames.Find(x=>x==name));
+                SecretNames.Remove(name);
+                return true;
             }
             return false;
         }
