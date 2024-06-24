@@ -35,5 +35,13 @@ namespace LookUpBrazil.Core.ObjectValues
                 }
             }
         }
+
+        public static implicit operator string(Text text) => text.ToString();
+
+        public override string ToString()
+        {
+            return _textCompleted.ToString();
+        }
+
     }
 }

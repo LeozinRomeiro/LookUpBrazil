@@ -121,10 +121,17 @@ namespace LookUpBrazil.Api.Controllers
                 if (location == null)
                     return NotFound(new ResultViewModel<Location>("Conteudo não encontrado"));
 
+                var modelCategory = context.Categories.Find(model.CategoryId);
+
+                if (modelCategory == null)
+                {
+                    return StatusCode(500, new ResultViewModel<Location>("APP03 - Categoria invalida"));
+                }
+
                 //_context.Entry(location).State = EntityState.Modified;
                 location.State = model.State;
                 location.City = model.City;
-                location.Category = context.Categories.FirstOrDefault(x=>x.Id==model.CategoryId);
+                location.Category = modelCategory;
                 location.LastUpdateDate = model.LastUpdateDate;
 
                 context.Locations.Update(location);
@@ -153,12 +160,19 @@ namespace LookUpBrazil.Api.Controllers
                 return BadRequest(new ResultViewModel<Location>(ModelState.GetErrors()));
             try
             {
+                var modelCategory = context.Categories.Find(model.CategoryId);
+
+                if (modelCategory == null)
+                {
+                    return StatusCode(500, new ResultViewModel<Location>("APP03 - Categoria invalida"));
+                }
+
                 var location = new Location
                 {
                     State = model.State,
                     City = model.City,
                     LastUpdateDate = model.LastUpdateDate,
-                    Category = context.Categories.Find(model.CategoryId)
+                    Category = modelCategory
                 };
                 await context.Locations.AddAsync(location);
                 await context.SaveChangesAsync();

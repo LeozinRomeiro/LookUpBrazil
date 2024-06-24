@@ -22,7 +22,15 @@ namespace LookUpBrazil.Api.Repositories
 
         public async Task<Game?> GetGameByIdAsync(Guid? id)
         {
-            return await context.Games.FirstOrDefaultAsync(x=>x.Id.Equals(id));
+            try
+            {
+                return await context.Games.FirstOrDefaultAsync(x=>x.Id.Equals(id));
+            }
+            catch
+            {
+
+                throw;
+            }
         }
 
     }

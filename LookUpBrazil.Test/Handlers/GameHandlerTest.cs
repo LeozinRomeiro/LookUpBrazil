@@ -16,8 +16,7 @@ namespace LookUpBrazil.Test.Handler
     [TestClass]
     public class GameHandlerTest
     {
-        public FakeCityRepository CityRepository = new FakeCityRepository();
-        //public FakeGameRepository GameRepository = new FakeGameRepository();
+        public FakeCityRepository CityRepository = new();
 
         [TestMethod]
         public void DadoUmaTentativaCorretaDeveRetornarSucesso()
@@ -25,7 +24,7 @@ namespace LookUpBrazil.Test.Handler
             var cities = CityRepository.GetCitiesByLetter();
 
             List<Name> names = new();
-            foreach (var city in cities)
+            foreach (var city in cities??new List<City>())
             {
                 names.Add(city.Name);
             }
@@ -35,7 +34,7 @@ namespace LookUpBrazil.Test.Handler
             var request = new AttemptRequest
             {
                 GameId = game.Id,
-                Name = names.First(x=>x.Text.InitialLetter.Text==game.Requirement.InitialLetter.Text),
+                Name = names.First(x=>x.Text.InitialLetter == game.Requirement.InitialLetter),
             };
 
             Response<bool> response;
@@ -58,7 +57,7 @@ namespace LookUpBrazil.Test.Handler
             var cities = CityRepository.GetCitiesByLetter();
 
             List<Name> names = new();
-            foreach (var city in cities)
+            foreach (var city in cities ?? new List<City>())
             {
                 names.Add(city.Name);
             }
@@ -68,7 +67,7 @@ namespace LookUpBrazil.Test.Handler
             var request = new AttemptRequest
             {
                 GameId = game.Id,
-                Name = names.First(x => x.Text.InitialLetter.Text != game.Requirement.InitialLetter.Text),
+                Name = names.First(x => x.Text.InitialLetter != game.Requirement.InitialLetter),
             };
 
             Response<bool> response;
@@ -91,7 +90,7 @@ namespace LookUpBrazil.Test.Handler
             var cities = CityRepository.GetCitiesByLetter();
 
             List<Name> names = new();
-            foreach (var city in cities)
+            foreach (var city in cities??new List<City>())
             {
                 names.Add(city.Name);
             }
@@ -100,7 +99,7 @@ namespace LookUpBrazil.Test.Handler
 
             bool LastAttempt = false;
 
-            foreach (var name in names.Where(x => x.Text.InitialLetter.Text == game.Requirement.InitialLetter.Text))
+            foreach (var name in names.Where(x => x.Text.InitialLetter == game.Requirement.InitialLetter))
             {
                 var request = new AttemptRequest
                 {

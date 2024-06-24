@@ -18,11 +18,17 @@ namespace LookUpBrazil.Api.Data.Mappings
 
             builder.OwnsOne(x => x.Name, name =>
             {
-                name.Property(n => n.TextCompleted)
-                    .IsRequired()
-                    .HasColumnName("Name")
-                    .HasColumnType("NVARCHAR")
-                    .HasMaxLength(80);
+
+                name.OwnsOne(name => name.Text, t =>
+                {
+                    t.Property(t => t.TextCompleted)
+                        .IsRequired()
+                        .HasColumnName("Name")
+                        .HasColumnType("NVARCHAR")
+                        .HasMaxLength(80);
+
+                    t.Ignore(t => t.InitialLetter);
+                });
             });
 
             builder.OwnsOne(x => x.States, states =>

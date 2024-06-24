@@ -7,7 +7,7 @@ namespace LookUpBrazil.Api.Repositories
 {
     public class CityRepository(LookUpBrazilApiContext context) : ICityRepository
     {
-        public async Task<List<City>?> GetCitiesByLetter(char letter)
+        public async Task<List<City>?> GetCitiesByLetterAsync(char letter)
         {
 			try
 			{
@@ -18,6 +18,37 @@ namespace LookUpBrazil.Api.Repositories
             catch (Exception ex)
             {
                 throw new Exception("Erro ao buscar cidades por letra", ex);
+            }
+        }
+
+        public async Task<List<City>?> GetCitiesAsync()
+        {
+            try
+            {
+                return await context.Cities
+                    .ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erro ao buscar cidades", ex);
+            }
+        }
+
+        public async Task<List<Name>?> GetNamesCitiesAsync()
+        {
+            try
+            {
+                var cities = await GetCitiesAsync();
+                var names = new List<Name>();
+                foreach (var city in cities??new List<City>())
+                {
+                    names.Add(city.Name);
+                }
+                return names;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erro ao buscar nomes de cidades", ex);
             }
         }
     }

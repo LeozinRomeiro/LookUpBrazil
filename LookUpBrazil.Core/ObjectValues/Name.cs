@@ -17,5 +17,12 @@ namespace LookUpBrazil.Core.ObjectValues
             Text = new Text(string.Empty);
         }
         public Text Text { get; set; } = new Text();
+
+        public static implicit operator string(Name name) => name.ToString();
+
+        public override string ToString()
+        {
+            return Text.ToString();
+        }
     }
 }

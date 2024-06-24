@@ -9,12 +9,18 @@ namespace LookUpBrazil.Core.ObjectValues
 {
     public class Letter
     {
+        protected Letter()
+        {
+            
+        }
         public Letter(char text)
         {
             InvalidLetterException.ThrowIfInvalid(text);
-            Text = text;
+            Character = text;
         }
 
-        public char Text { get; set; }
+        public char Character { get; set; }
+
+        public static implicit operator Char(Letter letter) => letter.Character;
     }
 }

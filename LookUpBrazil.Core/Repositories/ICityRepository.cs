@@ -9,6 +9,8 @@ namespace LookUpBrazil.Core.Repositories
 {
     public interface ICityRepository
     {
-        Task<List<City>?> GetCitiesByLetter(char letter);
+        Task<List<City>?> GetCitiesByLetterAsync(char letter);
+        Task<List<City>?> GetCitiesAsync();
+        Task<List<Name>?> GetNamesCitiesAsync();
     }
 }

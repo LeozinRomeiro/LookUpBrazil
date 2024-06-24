@@ -57,9 +57,9 @@ app.Run();
 
 void LoadConfiguration(WebApplication app)
 {
-    Configuration.KeyApi = app.Configuration.GetValue<string>("KeyApi");
-    Configuration.NameApi = app.Configuration.GetValue<string>("NameApi");
-    Configuration.JwtKey = app.Configuration.GetValue<string>("JwtKey");
+    Configuration.KeyApi = app.Configuration.GetValue<string>("KeyApi")??"Key API nao informada";
+    Configuration.NameApi = app.Configuration.GetValue<string>("NameApi") ?? "NameApi nao informada";
+    Configuration.JwtKey = app.Configuration.GetValue<string>("JwtKey") ?? "JwtKey nao informada";
 
     //var smtp = new Configuration.SmtpConfiguration();
     //app.Configuration.GetSection("Smtp").Bind(smtp);

@@ -81,7 +81,7 @@ namespace LookUpBrazil.Api.Controllers
             try
             {
                 var token = tokenService.GenerateToken(user);
-                return Ok(new ResultViewModel<string>(token, null));
+                return Ok(new ResultViewModel<string>(token, new List<string>()));
             }
             catch
             {
@@ -104,6 +104,11 @@ namespace LookUpBrazil.Api.Controllers
                 await System.IO.File.WriteAllBytesAsync($"wwwroot/images/{fileName}",bytes);
             }
             catch
+            {
+                return StatusCode(500, new ResultViewModel<string>("04343 - Falha interna"));
+            }
+
+            if (User.Identity is null)
             {
                 return StatusCode(500, new ResultViewModel<string>("04343 - Falha interna"));
             }
@@ -131,16 +136,40 @@ namespace LookUpBrazil.Api.Controllers
 
         [Authorize(Roles ="user")]
         [HttpGet("user")]
-        public IActionResult GetUser() => Ok(User.Identity.Name);
+        public IActionResult GetUser()
+        {
+            if (User.Identity is null)
+            {
+                return StatusCode(500, new ResultViewModel<string>("04343 - Falha interna"));
+
+            }
+            return Ok(User.Identity.Name);
+        }
 
 
         [Authorize(Roles = "admin")]
         [HttpGet("admin")]
-        public IActionResult GetAdmin() => Ok(User.Identity.Name);
+        public IActionResult GetAdmin()
+        {
+            if (User.Identity is null)
+            {
+                return StatusCode(500, new ResultViewModel<string>("04343 - Falha interna"));
+
+            }
+            return Ok(User.Identity.Name);
+        }
 
 
         [Authorize(Roles = "author")]
         [HttpGet("author")]
-        public IActionResult GetAuthor() => Ok(User.Identity.Name);
+        public IActionResult GetAuthor()
+        {
+            if (User.Identity is null)
+            {
+                return StatusCode(500, new ResultViewModel<string>("04343 - Falha interna"));
+
+            }
+            return Ok(User.Identity.Name);
+        }
     }
 }

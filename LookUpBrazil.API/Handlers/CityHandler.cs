@@ -13,7 +13,7 @@ namespace LookUpBrazil.Api.Handler
         {
             try
             {
-                var city = await context.Cities.FirstOrDefaultAsync(x => x.Name.TextCompleted == request.Name.TextCompleted);
+                var city = await context.Cities.FirstOrDefaultAsync(x => x.Name.Text == request.Name.Text);
                 if (city == null)
                     return new Response<City?>(null, 300, "Cidade não é valida");
                 return new Response<City?>(city);
