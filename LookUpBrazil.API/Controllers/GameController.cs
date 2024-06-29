@@ -9,7 +9,7 @@ namespace LookUpBrazil.Api.Controllers
     [ApiController]
     public class GameController
     {
-        [HttpPost]
+        [HttpGet]
         public async Task<IResult> GetGame(
             [FromServices] IGameHandler handler,
             [FromQuery] Guid gameId)
@@ -22,7 +22,20 @@ namespace LookUpBrazil.Api.Controllers
             : TypedResults.BadRequest(result);
         }
 
-        [HttpGet]
+        [HttpPost("Attempt")]
+        public async Task<IResult> PostAttempt(
+            [FromServices] IGameHandler handler,
+            [FromQuery] Guid gameId)
+        {
+            var request = new AttemptRequest { GameId = gameId };
+
+            var result = await handler.AttemptAsync(request);
+            return result.IsSuccess
+            ? TypedResults.Ok(result)
+            : TypedResults.BadRequest(result);
+        }
+
+        [HttpPost]
         public async Task<IResult> CreateGame(
         [FromServices] IGameHandler handler)
         {
