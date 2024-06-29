@@ -28,5 +28,14 @@ namespace LookUpBrazil.Core.ObjectValues
         {
             return Character.ToString();
         }
+        public override bool Equals(object? obj)
+        {
+            if (obj is Letter other)
+            {
+                return Character == other.Character;
+            }
+            return false;
+        }
+        public override int GetHashCode() => Character.GetHashCode();
     }
 }
