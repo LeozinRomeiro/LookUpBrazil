@@ -29,51 +29,40 @@ namespace LookUpBrazil.Api.Data.Mappings
                 });
             });
 
-            builder.OwnsOne(g => g.SecretNames, sn =>
+            builder.OwnsMany(e => e.SecretNames, sn =>
             {
-                sn.ToTable("SecretNames");
-
-                sn.HasOne(sn=>sn.Game);
-
-                sn.OwnsMany(sn => sn.Names, n =>
+                sn.WithOwner().HasForeignKey("GameId");
+                sn.Property<int>("Id");
+                sn.HasKey("Id");
+                sn.ToTable("GameSecretNames");
+                sn.OwnsOne(name => name.Text, t =>
                 {
-                    n.OwnsOne(s => s.Text, t =>
-                    {
-                        t.Property(text => text.TextCompleted)
-                         .HasColumnName("Name")
-                         .HasColumnType("varchar(80)")
-                         .IsRequired();
+                    t.Property(t => t.TextCompleted)
+                        .IsRequired()
+                        .HasColumnName("Name")
+                        .HasColumnType("NVARCHAR")
+                        .HasMaxLength(80);
 
-                        t.Ignore(t => t.InitialLetter);
-                    });
+                    t.Ignore(t => t.InitialLetter);
                 });
-
             });
 
-            builder.HasMany<SecretNames>().WithOne(e => e.Game);
-
-            builder.OwnsOne(g => g.MatchedNames, mn =>
+            builder.OwnsMany(e => e.MatchedNames, mn =>
             {
-                mn.ToTable("MatchedNames");
-
-                mn.HasOne(mn => mn.Game);
-
-                mn.OwnsMany(sn => sn.Names, n =>
+                mn.OwnsOne(name => name.Text, t =>
                 {
-                    n.Property(n => n.Text.TextCompleted)
-                     .HasColumnName("Name")
-                     .HasColumnType("varchar(80)")
-                     .IsRequired();
-                    //n.OwnsOne(s => s.Text, t =>
-                    //{
-                    //    t.Property(text => text.TextCompleted)
-                    //     .HasColumnName("Name")
-                    //     .HasColumnType("varchar(80)")
-                    //     .IsRequired();
+                    t.Property(t => t.TextCompleted)
+                        .IsRequired()
+                        .HasColumnName("Name")
+                        .HasColumnType("NVARCHAR")
+                        .HasMaxLength(80);
 
-                    //    t.Ignore(t => t.InitialLetter);
-                    //});
+                    t.Ignore(t => t.InitialLetter);
                 });
+                mn.WithOwner().HasForeignKey("GameId");
+                mn.Property<int>("Id");
+                mn.HasKey("Id");
+                mn.ToTable("GameMatchedNames");
             });
 
         }

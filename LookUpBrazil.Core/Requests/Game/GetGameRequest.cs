@@ -8,6 +8,6 @@ namespace LookUpBrazil.Core.Requests.Game
 {
     public class GetGameRequest
     {
-        public Guid? GameId { get; set; }
+        public Guid GameId { get; set; }
     }
 }

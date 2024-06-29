@@ -19,23 +19,23 @@ namespace LookUpBrazil.Api.Handler
         }
 
         public async Task<Response<Game>> CreateGameAsync()
-        {
-            try
             {
-                var names = await cityRepository.GetNamesCitiesAsync();
-
-                if (names is null)
+                try
                 {
+                    var names = await cityRepository.GetNamesCitiesAsync();
+
+                    if (names is not null)
+                    {
+                        var game = new Game(names);
+                        await gameRepository.CreateGameAsync(game);
+                        return new Response<Game>(game, message: "A letra inicial precisa ser " + game.Requirement.InitialLetter?.ToString());
+                    }
                     return new Response<Game>(null, 500, "Falha no servidor de registros" );
                 }
-                var game = new Game(names);
-                await gameRepository.CreateGameAsync(game);
-                return new Response<Game>(game, message: "A letra inicial precisa ser " + game.Requirement.InitialLetter);
-            }
-            catch (Exception e)
-            {
-                return new Response<Game>(null, 500, "Falha no servidor: " + e.Message);
-            }
+                catch (Exception e)
+                {
+                    return new Response<Game>(null, 500, "Falha no servidor: " + e.Message);
+                }
         }
 
         public async Task<Response<Game>> GetGameAsync(GetGameRequest request)
@@ -43,9 +43,10 @@ namespace LookUpBrazil.Api.Handler
             try
             {
                 var game = await gameRepository.GetGameByIdAsync(request.GameId);
+
                 if (game is not null)
                 {
-                    return new Response<Game>(game, message: "A letra inicial precisa ser " + game.Requirement.InitialLetter);
+                    return new Response<Game>(game, message: "A letra inicial precisa ser " + game.Requirement.InitialLetter?.ToString());
                 }
                 return new Response<Game>(null, 300, "Codigo de game está invalido");
             }
