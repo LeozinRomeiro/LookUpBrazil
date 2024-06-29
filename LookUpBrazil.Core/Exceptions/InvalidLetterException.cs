@@ -24,12 +24,12 @@ namespace LookUpBrazil.Core.Exceptions
             if (string.IsNullOrEmpty(letter.ToString()))
                 throw new InvalidLetterException(message);
 
-            if (!UrlRegex().IsMatch(letter.ToString()))
+            if (!LetterRegex().IsMatch(letter.ToString()))
                 throw new InvalidLetterException("Letra incompativel com o formato definido");
         }
 
         [GeneratedRegex(
             "^[A-Z]+$")]
-        private static partial Regex UrlRegex();
+        private static partial Regex LetterRegex();
     }   
 }
