@@ -8,14 +8,9 @@ using System.Threading.Tasks;
 
 namespace LookUpBrazil.Core.Exceptions
 {
-    public partial class InvalidLetterException : Exception
+    public partial class InvalidLetterException(string message = InvalidLetterException.DefaultErrorMessage) : Exception(message)
     {
         private const string DefaultErrorMessage = "Letra invalida";
-
-        public InvalidLetterException(string message = DefaultErrorMessage)
-            : base(message)
-        {
-        }
 
         public static void ThrowIfInvalid(
             char letter,

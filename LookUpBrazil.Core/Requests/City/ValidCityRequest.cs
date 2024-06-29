@@ -9,6 +9,6 @@ namespace LookUpBrazil.Core.Requests.City
 {
     public class ValidCityRequest : Request
     {
-        public Name Name { get; set; } = new Name();
+        public Name Name { get; set; } = null!;
     }
 }

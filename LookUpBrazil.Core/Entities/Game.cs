@@ -17,11 +17,11 @@ namespace LookUpBrazil.Core.Entities
         protected Game() { }
         public Game(List<Name> names)
         {
-            _secretNames = names.Where(x=>x.Text.InitialLetter == Requirement.InitialLetter).ToList();
+            _secretNames = names.Where(x=>x.Text.InitialLetter?.ToString() == Requirement.InitialLetter?.ToString()).ToList();
         }
         public bool Attempt(Name name)
         {
-            if(Requirement.InitialLetter == name.Text.InitialLetter || SecretNames.Contains(name))
+            if(Requirement.InitialLetter?.ToString() == name.Text.InitialLetter?.ToString() || SecretNames.Contains(name))
             {
                 var matchedName = SecretNames.Find(x => x == name);
                 if (matchedName != null)

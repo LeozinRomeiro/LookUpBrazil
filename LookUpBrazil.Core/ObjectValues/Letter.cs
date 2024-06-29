@@ -10,10 +10,7 @@ namespace LookUpBrazil.Core.ObjectValues
 {
     public class Letter
     {
-        protected Letter()
-        {
-            
-        }
+        protected Letter() { }
         public Letter(char text)
         {
             InvalidLetterException.ThrowIfInvalid(text);
@@ -25,11 +22,7 @@ namespace LookUpBrazil.Core.ObjectValues
         public static implicit operator Char(Letter letter) => letter.Character;
         public static implicit operator String(Letter letter)
         {
-            if (letter is not null)
-            {
-                return letter.Character.ToString();
-            }
-            return "";
+            return letter.Character.ToString();
         }
         public override string ToString()
         {

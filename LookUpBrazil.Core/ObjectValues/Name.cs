@@ -10,11 +10,11 @@ namespace LookUpBrazil.Core.ObjectValues
     {
         public Name(string textCompleted)
         {
+            if (string.IsNullOrEmpty(textCompleted))
+            {
+                throw new ArgumentNullException(nameof(textCompleted), message: "Texto do nome está nulo ou vazio");
+            }
             Text = new Text(textCompleted);
-        }
-        public Name()
-        {
-            Text = new Text(string.Empty);
         }
         public Text Text { get; set; } = new Text();
 
