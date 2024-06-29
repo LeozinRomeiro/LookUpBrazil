@@ -7,17 +7,8 @@ using LookUpBrazil.Core.Responses;
 
 namespace LookUpBrazil.Api.Handler
 {
-    public class GameHandler : IGameHandler
+    public class GameHandler(IGameRepository gameRepository, ICityRepository cityRepository) : IGameHandler
     {
-        private readonly IGameRepository gameRepository;
-        private readonly ICityRepository cityRepository;
-
-        public GameHandler(IGameRepository gameRepository, ICityRepository cityRepository)
-        {
-            this.gameRepository = gameRepository;
-            this.cityRepository = cityRepository;
-        }
-
         public async Task<Response<Game>> CreateGameAsync()
             {
                 try

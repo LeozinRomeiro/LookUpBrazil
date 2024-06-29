@@ -23,8 +23,8 @@ namespace LookUpBrazil.Test.Handler
         {
             var cities = CityRepository.GetCitiesByLetter();
 
-            List<Name> names = new();
-            foreach (var city in cities??new List<City>())
+            List<Name> names = [];
+            foreach (var city in cities??[])
             {
                 names.Add(city.Name);
             }
@@ -34,7 +34,7 @@ namespace LookUpBrazil.Test.Handler
             var request = new AttemptRequest
             {
                 GameId = game.Id,
-                Name = names.First(x=>x.Text.InitialLetter == game.Requirement.InitialLetter),
+                Name = names.First(x=>x.Text.InitialLetter?.ToString() == game.Requirement.InitialLetter?.ToString()),
             };
 
             Response<bool> response;
@@ -56,8 +56,8 @@ namespace LookUpBrazil.Test.Handler
         {
             var cities = CityRepository.GetCitiesByLetter();
 
-            List<Name> names = new();
-            foreach (var city in cities ?? new List<City>())
+            List<Name> names = [];
+            foreach (var city in cities ?? [])
             {
                 names.Add(city.Name);
             }
@@ -89,8 +89,8 @@ namespace LookUpBrazil.Test.Handler
         {
             var cities = CityRepository.GetCitiesByLetter();
 
-            List<Name> names = new();
-            foreach (var city in cities??new List<City>())
+            List<Name> names = [];
+            foreach (var city in cities??[])
             {
                 names.Add(city.Name);
             }
@@ -99,7 +99,7 @@ namespace LookUpBrazil.Test.Handler
 
             bool LastAttempt = false;
 
-            foreach (var name in names.Where(x => x.Text.InitialLetter == game.Requirement.InitialLetter))
+            foreach (var name in names.Where(x => x.Text.InitialLetter?.ToString() == game.Requirement.InitialLetter?.ToString()))
             {
                 var request = new AttemptRequest
                 {

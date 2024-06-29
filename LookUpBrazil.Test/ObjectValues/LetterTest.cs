@@ -16,11 +16,12 @@ namespace LookUpBrazil.Test.ObjectValues
         [DataRow('1',false)]
         [DataRow('-',false)]
         [DataRow('$',false)]
-        public void TestarAValidacaoDeLetras(char texto, bool isValid)
+        [DataRow(null,false)]
+        public void ValidacaoRegexDeLetras(char texto, bool isValid)
         {
             try
             {
-                new Letter(texto);
+                var letter = new Letter(texto);
                 Assert.IsTrue(isValid);
             }
             catch
