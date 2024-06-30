@@ -12,5 +12,6 @@ namespace LookUpBrazil.Core.Handler
     public interface ICityHandler
     {
         Task<Response<City?>> ValidAsync(ValidCityRequest request);
+        Task GetIbgeCitiesAsync();
     }
 }

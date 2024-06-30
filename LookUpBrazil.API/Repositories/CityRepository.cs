@@ -50,5 +50,21 @@ namespace LookUpBrazil.Api.Repositories
                 throw new Exception("Erro ao buscar nomes de cidades", ex);
             }
         }
+
+        public async Task CreateCitiesAsync(List<City> cities)
+        {
+            try
+            {
+                foreach (var city in cities)
+                {
+                   context.Cities.Add(city);
+                }
+                await context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erro ao registrar cidades", ex);
+            }
+        }
     }
 }

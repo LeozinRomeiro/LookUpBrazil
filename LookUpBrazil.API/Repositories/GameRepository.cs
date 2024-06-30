@@ -1,5 +1,6 @@
 ﻿using LookUpBrazil.Api.Data;
 using LookUpBrazil.Core.Entities;
+using LookUpBrazil.Core.ObjectValues;
 using LookUpBrazil.Core.Repositories;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,7 +8,7 @@ namespace LookUpBrazil.Api.Repositories
 {
     public class GameRepository(LookUpBrazilApiContext context) : IGameRepository
     {
-        public async Task CreateGameAsync(Game game)
+        public async Task CreateGameAsync(Game game, List<Name> names)
         {
             try
             {

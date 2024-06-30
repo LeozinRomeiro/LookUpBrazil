@@ -18,7 +18,7 @@ namespace LookUpBrazil.Api.Handler
                     if (names is not null)
                     {
                         var game = new Game(names);
-                        await gameRepository.CreateGameAsync(game);
+                        await gameRepository.CreateGameAsync(game, names);
                         return new Response<Game>(game, message: "A letra inicial precisa ser " + game.Requirement.InitialLetter?.ToString());
                     }
                     return new Response<Game>(null, 500, "Falha no servidor de registros" );

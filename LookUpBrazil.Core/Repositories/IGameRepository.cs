@@ -1,4 +1,5 @@
 ﻿using LookUpBrazil.Core.Entities;
+using LookUpBrazil.Core.ObjectValues;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,6 @@ namespace LookUpBrazil.Core.Repositories
     public interface IGameRepository
     {
         Task<Game> GetGameByIdAsync(Guid id);
-        Task CreateGameAsync(Game game);
+        Task CreateGameAsync(Game game, List<Name> names);
     }
 }
