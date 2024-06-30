@@ -34,7 +34,7 @@ namespace LookUpBrazil.Test.Handler
             var request = new AttemptRequest
             {
                 GameId = game.Id,
-                Name = names.First(x=>x.Text.InitialLetter?.ToString() == game.Requirement.InitialLetter?.ToString()),
+                Name = names.First(x=>x.Text.InitialLetter.Equals(game.Requirement.InitialLetter)),
             };
 
             Response<bool> response;
@@ -52,7 +52,7 @@ namespace LookUpBrazil.Test.Handler
         }
 
         [TestMethod]
-        public void DadoUmaTentativaIncorretaDeveRetornarSucesso()
+        public void DadoUmaTentativaIncorretaNaoDeveRetornarSucesso()
         {
             var cities = CityRepository.GetCitiesByLetter();
 

@@ -37,5 +37,13 @@ namespace LookUpBrazil.Core.ObjectValues
             return false;
         }
         public override int GetHashCode() => Character.GetHashCode();
+        public static bool operator ==(Letter left, Letter right)
+        {
+            if (ReferenceEquals(left, right)) return true;
+            if (left is null || right is null) return false;
+            return left.Character == right.Character;
+        }
+
+        public static bool operator !=(Letter left, Letter right) => !(left == right);
     }
 }

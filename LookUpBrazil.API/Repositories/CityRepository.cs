@@ -25,8 +25,7 @@ namespace LookUpBrazil.Api.Repositories
         {
             try
             {
-                return await context.Cities
-                    .ToListAsync();
+                return await context.Cities.ToListAsync();
             }
             catch (Exception ex)
             {
@@ -40,7 +39,7 @@ namespace LookUpBrazil.Api.Repositories
             {
                 var cities = await GetCitiesAsync();
                 var names = new List<Name>();
-                foreach (var city in cities??new List<City>())
+                foreach (var city in cities??[])
                 {
                     names.Add(city.Name);
                 }

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LookUpBrazil.Test.Handler
+namespace LookUpBrazil.Test.ObjectValues
 {
     [TestClass]
     public class RequirementTest

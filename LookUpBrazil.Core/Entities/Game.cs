@@ -16,10 +16,11 @@ namespace LookUpBrazil.Core.Entities
         protected Game() { }
         public Game(List<Name> names)
         {
-            if (names is not null)
+            if (names is null)
             {
-                SecretNames = names.Where(x=>x.Text.InitialLetter.Equals(Requirement.InitialLetter)).ToList();
+                throw new ArgumentNullException(nameof(names), message: "As cidades validas não foram reconhecidas");
             }
+            SecretNames = names.Where(x=>x.Text.InitialLetter.Equals(Requirement.InitialLetter)).ToList();
         }
         public bool Attempt(Name name)
         {
