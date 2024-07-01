@@ -14,13 +14,10 @@ namespace LookUpBrazil.Api.Controllers
     {
         [HttpPost]
         public async Task<IResult> PostValidCity(
-            [FromBody] ValidCityRequest request,
             [FromServices] ICityHandler handler)
         {
-            var result = await handler.ValidAsync(request);
-            return result.IsSuccess
-            ? TypedResults.Ok(result)
-            : TypedResults.BadRequest(result);
+            await handler.GetIbgeCitiesAsync();
+            return TypedResults.Ok();
         }
     }
 }

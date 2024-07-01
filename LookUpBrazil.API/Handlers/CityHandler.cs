@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LookUpBrazil.Api.Handler
 {
-    public class CityHandler(LookUpBrazilApiContext context, IHttpClientFactory httpClientFactory, ICityRepository cityRepository) : ICityHandler
+    public class CityHandler(IHttpClientFactory httpClientFactory, ICityRepository cityRepository) : ICityHandler
     {
         public async Task GetIbgeCitiesAsync()
         {
@@ -29,22 +29,5 @@ namespace LookUpBrazil.Api.Handler
                 throw;
             }
         }
-
-        public async Task<Response<City?>> ValidAsync(ValidCityRequest request)
-        {
-            try
-            {
-                var city = await context.Cities.FirstOrDefaultAsync(x => x.Name.Text == request.Name.Text);
-                if (city == null)
-                    return new Response<City?>(null, 300, "Cidade não é valida");
-                return new Response<City?>(city);
-            }
-            catch(Exception e)
-            {
-                return new Response<City?>(null, 500, "Falha no servidor: "+e.Message);
-            }
-        }
-
-
     }
 }
