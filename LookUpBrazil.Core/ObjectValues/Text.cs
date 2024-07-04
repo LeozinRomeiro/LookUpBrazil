@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,10 +16,6 @@ namespace LookUpBrazil.Core.ObjectValues
         {
             TextCompleted = textCompleted;
         }
-        public Text()
-        {
-            TextCompleted = string.Empty;
-        }
         public string TextCompleted
         {
             get => _textCompleted;
@@ -27,7 +24,8 @@ namespace LookUpBrazil.Core.ObjectValues
                 _textCompleted = value;
                 if (!string.IsNullOrEmpty(value))
                 {
-                    InitialLetter = new Letter(value[0]);
+                    var normalizedValue = RemoveDiacritics(value[0].ToString());
+                    InitialLetter = new Letter(normalizedValue[0]);
                 }
                 else
                 {
@@ -43,5 +41,24 @@ namespace LookUpBrazil.Core.ObjectValues
             return _textCompleted.ToString();
         }
 
+        private static string RemoveDiacritics(string text)
+        {
+            if (string.IsNullOrEmpty(text))
+                return text;
+
+            var normalizedString = text.Normalize(NormalizationForm.FormD);
+            var stringBuilder = new StringBuilder();
+
+            foreach (var c in normalizedString)
+            {
+                var unicodeCategory = CharUnicodeInfo.GetUnicodeCategory(c);
+                if (unicodeCategory != UnicodeCategory.NonSpacingMark)
+                {
+                    stringBuilder.Append(c);
+                }
+            }
+
+            return stringBuilder.ToString().Normalize(NormalizationForm.FormC);
+        }
     }
 }

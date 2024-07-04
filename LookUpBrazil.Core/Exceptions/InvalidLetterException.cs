@@ -20,7 +20,7 @@ namespace LookUpBrazil.Core.Exceptions
                 throw new InvalidLetterException(message);
 
             if (!LetterRegex().IsMatch(letter.ToString()))
-                throw new InvalidLetterException("Letra incompativel com o formato definido");
+                throw new InvalidLetterException("Letra incompativel com o formato definido: " + letter.ToString());
         }
 
         [GeneratedRegex(

@@ -8,6 +8,7 @@ namespace LookUpBrazil.Core.ObjectValues
 {
     public class Name
     {
+        protected Name() { }
         public Name(string textCompleted)
         {
             if (string.IsNullOrEmpty(textCompleted))
@@ -16,7 +17,7 @@ namespace LookUpBrazil.Core.ObjectValues
             }
             Text = new Text(textCompleted);
         }
-        public Text Text { get; set; } = new Text();
+        public Text Text { get; set; } = null!;
 
         public static implicit operator string(Name name) => name.ToString();
 

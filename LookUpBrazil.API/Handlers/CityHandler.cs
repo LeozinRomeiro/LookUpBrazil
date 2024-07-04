@@ -14,8 +14,8 @@ namespace LookUpBrazil.Api.Handler
         {
             try
             {
-                var client = httpClientFactory.CreateClient(Configuration.UrlIbgeMunicipios);
-                var result = await client.GetFromJsonAsync<List<CityFromJson.Municipio>>("Municipio");
+                var client = httpClientFactory.CreateClient(Configuration.HttpClientName);
+                var result = await client.GetFromJsonAsync<List<CityFromJson.Municipio>>("");
                 var cities = new List<City>();
                 foreach (var city in result ?? [])
                 {
