@@ -9,7 +9,6 @@ namespace LookUpBrazil.Core.Requests.Game
 {
     public class AttemptRequest : Request
     {
-        public Guid GameId { get; set; }
         public Name Name { get; set; } = null!;
     }
 }

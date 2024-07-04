@@ -12,7 +12,7 @@ namespace LookUpBrazil.Core.Handler
 {
     public interface IGameHandler
     {
-        Task<Response<Game?>> AttemptAsync(AttemptRequest attempt);
+        Task<Response<Game?>> AttemptAsync(AttemptRequest attempt, Guid gameId);
         Task<Response<Game>> GetGameAsync(GetGameRequest request);
         Task<Response<Game>> CreateGameAsync();
     }

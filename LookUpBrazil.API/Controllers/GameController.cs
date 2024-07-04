@@ -28,9 +28,7 @@ namespace LookUpBrazil.Api.Controllers
             [FromQuery] Guid gameId,
             [FromBody] AttemptRequest request)
         {
-            request.GameId = gameId;
-
-            var result = await handler.AttemptAsync(request);
+            var result = await handler.AttemptAsync(request, gameId);
             return result.IsSuccess
             ? TypedResults.Ok(result)
             : TypedResults.BadRequest(result);

@@ -46,11 +46,11 @@ namespace LookUpBrazil.Api.Handler
                 return new Response<Game>(null, 500, "Falha no servidor: " + e.Message);
             }
         }
-        public async Task<Response<Game?>> AttemptAsync(AttemptRequest attempt)
+        public async Task<Response<Game?>> AttemptAsync(AttemptRequest attempt, Guid gameId)
         {
             try
             {
-                var game = await gameRepository.GetGameByIdAsync(attempt.GameId);
+                var game = await gameRepository.GetGameByIdAsync(gameId);
 
                 if (game is null)
                 {
