@@ -3,6 +3,7 @@
     public class Configuration
     {
         public static string UrlIbgeMunicipios = "https://servicodados.ibge.gov.br/api/v1/localidades/municipios?orderBy=nome";
+        public static string HttpClientName = "IbgeMunicipios";
         public static string JwtKey { get; set; } = "leo";
         public static string NameApi = "Chave Secreta";
         public static string KeyApi = "fds34dsd2354ewfrw";

@@ -120,6 +120,14 @@ void ConfigureServices(WebApplicationBuilder builder)
     builder.Services.AddTransient<ICityRepository, CityRepository>();
     builder.Services.AddTransient<ICityHandler,CityHandler>();
     builder.Services.AddTransient<IGameHandler,GameHandler>();
+    builder.Services.AddHttpClient(
+    Configuration.HttpClientName,
+    x =>
+    {
+        x.BaseAddress = new Uri(Configuration.UrlIbgeMunicipios);
+    }
+    );
+
 
     // Learn more about configuring Swagger/OpenApi at https://aka.ms/aspnetcore/swashbuckle
     builder.Services.AddEndpointsApiExplorer();
