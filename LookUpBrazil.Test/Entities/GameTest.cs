@@ -12,17 +12,12 @@ namespace LookUpBrazil.Test.Entities
     [TestClass]
     public class GameTest
     {
-        public FakeCityRepository CityRepository = new();
+        private FakeCityRepository CityRepository = new();
+        private List<Name> names = [];
         [TestMethod]
         public void DadoUmaTentativaCorretaDeveRetornarSucesso()
         {
-            var cities = CityRepository.GetCitiesByLetter();
-
-            List<Name> names = [];
-            foreach (var city in cities ?? [])
-            {
-                names.Add(city.Name);
-            }
+            names = CityRepository.GetNamesCities();
 
             var game = new Game(names);
             Assert.IsTrue(game.Attempt(names.First(x => x.Text.InitialLetter.Equals(game.Requirement.InitialLetter))));
@@ -30,23 +25,31 @@ namespace LookUpBrazil.Test.Entities
         [TestMethod]
         public void DadoUmaTentativaIncorretaNaoDeveRetornarSucesso()
         {
-            var cities = CityRepository.GetCitiesByLetter();
-
-            List<Name> names = [];
-            foreach (var city in cities ?? [])
-            {
-                names.Add(city.Name);
-            }
+            names = CityRepository.GetNamesCities();
 
             var game = new Game(names);
             Assert.IsFalse(game.Attempt(names.First(x => x.Text.InitialLetter != game.Requirement.InitialLetter)));
         }
         [TestMethod]
-        public void DadoUmaListaNulaParaOhGameDeveRetornarException()
+        [DataRow(null, false)]
+        public void DadoUmaListaNulaParaOhGameDeveRetornarException(List<Name> names, bool isValid)
         {
             try
             {
-                new Game(null);
+                new Game(names);
+                Assert.IsTrue(isValid);
+            }
+            catch (ArgumentNullException)
+            {
+                Assert.IsFalse(isValid);
+            }
+        }
+        [TestMethod]
+        public void DadoUmaListaVaziaParaOhGameDeveRetornarException()
+        {
+            try
+            {
+                new Game(new List<Name>());
                 Assert.IsTrue(false);
             }
             catch (ArgumentNullException)

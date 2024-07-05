@@ -22,7 +22,7 @@ namespace LookUpBrazil.Test.Repositories
             return Cities.First(x=>x.Name.Text.TextCompleted == TextCompleted);
         }
 
-        public List<City>? GetCitiesByLetter()
+        public List<City> GetCities()
         {
             var cities = new List<City>
             {
@@ -55,6 +55,16 @@ namespace LookUpBrazil.Test.Repositories
             };
 
             return cities;
+        }
+        public List<Name> GetNamesCities()
+        {
+            List<Name> names = [];
+            foreach (var city in GetCities() ?? [])
+            {
+                names.Add(city.Name);
+            }
+
+            return names;
         }
     }
 }

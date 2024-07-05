@@ -21,7 +21,7 @@ namespace LookUpBrazil.Test.Handler
         [TestMethod]
         public void DadoUmaTentativaCorretaDeveRetornarSucesso()
         {
-            var cities = CityRepository.GetCitiesByLetter();
+            var cities = CityRepository.GetCities();
 
             List<Name> names = [];
             foreach (var city in cities??[])
@@ -33,12 +33,12 @@ namespace LookUpBrazil.Test.Handler
 
             var request = new AttemptRequest
             {
-                name = names.First(x=>x.Text.InitialLetter.Equals(game.Requirement.InitialLetter)).ToString(),
+                Name = names.First(x=>x.Text.InitialLetter.Equals(game.Requirement.InitialLetter)).ToString(),
             };
 
             Response<bool> response;
 
-            if (!game.Attempt(new Name(request.name)))
+            if (!game.Attempt(new Name(request.Name)))
             {
                 response = new Response<bool>(false, 300, "Cidade nao e valida");
             }
@@ -53,7 +53,7 @@ namespace LookUpBrazil.Test.Handler
         [TestMethod]
         public void DadoUmaTentativaIncorretaNaoDeveRetornarSucesso()
         {
-            var cities = CityRepository.GetCitiesByLetter();
+            var cities = CityRepository.GetCities();
 
             List<Name> names = [];
             foreach (var city in cities ?? [])
@@ -65,12 +65,12 @@ namespace LookUpBrazil.Test.Handler
 
             var request = new AttemptRequest
             {
-                name = names.First(x => x.Text.InitialLetter != game.Requirement.InitialLetter),
+                Name = names.First(x => x.Text.InitialLetter != game.Requirement.InitialLetter),
             };
 
             Response<bool> response;
 
-            if (!game.Attempt(request.name))
+            if (!game.Attempt(request.Name))
             {
                 response = new Response<bool>(false, 300, "Cidade nao e valida");
             }
@@ -85,7 +85,7 @@ namespace LookUpBrazil.Test.Handler
         [TestMethod]
         public void AcertandoTodasAsCidadesGameDeveApontarFinish()
         {
-            var cities = CityRepository.GetCitiesByLetter();
+            var cities = CityRepository.GetCities();
 
             List<Name> names = [];
             foreach (var city in cities??[])
@@ -101,10 +101,10 @@ namespace LookUpBrazil.Test.Handler
             {
                 var request = new AttemptRequest
                 {
-                    name = name,
+                    Name = name,
                 };
 
-                LastAttempt = !game.Attempt(request.name);
+                LastAttempt = !game.Attempt(request.Name);
             }
 
             Response<bool> response;
