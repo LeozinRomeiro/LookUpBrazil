@@ -16,7 +16,7 @@ namespace LookUpBrazil.Core.Entities
         protected Game() { }
         public Game(List<Name> names)
         {
-            if (names is null)
+            if (names is null || names.Count == 0)
             {
                 throw new ArgumentNullException(nameof(names), message: "As cidades validas não foram reconhecidas");
             }
@@ -26,7 +26,7 @@ namespace LookUpBrazil.Core.Entities
         {
             if(Requirement.InitialLetter?.ToString() == name.Text.InitialLetter?.ToString() || SecretNames.Contains(name))
             {
-                var matchedName = SecretNames.Find(x => x == name);
+                var matchedName = SecretNames.Find(x => x.Text.TextCompleted == name);
                 if (matchedName != null)
                 {
                     MatchedNames.Add(matchedName);
