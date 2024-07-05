@@ -9,6 +9,6 @@ namespace LookUpBrazil.Core.Requests.Game
 {
     public class AttemptRequest : Request
     {
-        public Name Name { get; set; } = null!;
+        public string name { get; set; } = null!;
     }
 }

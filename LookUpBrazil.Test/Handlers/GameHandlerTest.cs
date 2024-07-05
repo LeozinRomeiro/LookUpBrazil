@@ -33,13 +33,12 @@ namespace LookUpBrazil.Test.Handler
 
             var request = new AttemptRequest
             {
-                GameId = game.Id,
-                Name = names.First(x=>x.Text.InitialLetter.Equals(game.Requirement.InitialLetter)),
+                name = names.First(x=>x.Text.InitialLetter.Equals(game.Requirement.InitialLetter)).ToString(),
             };
 
             Response<bool> response;
 
-            if (!game.Attempt(request.Name))
+            if (!game.Attempt(new Name(request.name)))
             {
                 response = new Response<bool>(false, 300, "Cidade nao e valida");
             }
@@ -66,13 +65,12 @@ namespace LookUpBrazil.Test.Handler
 
             var request = new AttemptRequest
             {
-                GameId = game.Id,
-                Name = names.First(x => x.Text.InitialLetter != game.Requirement.InitialLetter),
+                name = names.First(x => x.Text.InitialLetter != game.Requirement.InitialLetter),
             };
 
             Response<bool> response;
 
-            if (!game.Attempt(request.Name))
+            if (!game.Attempt(request.name))
             {
                 response = new Response<bool>(false, 300, "Cidade nao e valida");
             }
@@ -103,11 +101,10 @@ namespace LookUpBrazil.Test.Handler
             {
                 var request = new AttemptRequest
                 {
-                    GameId = game.Id,
-                    Name = name,
+                    name = name,
                 };
 
-                LastAttempt = !game.Attempt(request.Name);
+                LastAttempt = !game.Attempt(request.name);
             }
 
             Response<bool> response;

@@ -57,7 +57,7 @@ namespace LookUpBrazil.Api.Handler
                     return new Response<Game?>(null, 300, "Game não encontrado");
                 }
 
-                if (game.Attempt(attempt.Name))
+                if (game.Attempt(attempt.name))
                 {
                     return new Response<Game?>(game);
                 }
