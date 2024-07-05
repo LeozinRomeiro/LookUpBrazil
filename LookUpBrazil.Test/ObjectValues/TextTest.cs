@@ -16,5 +16,11 @@ namespace LookUpBrazil.Test.ObjectValues
             var text = new Text("Ácido");
             Assert.AreEqual(text.InitialLetter.Character, 'A');
         }
+        [TestMethod]
+        public void DadoUmTextoVazioAhLetraInicialDeveSerNula()
+        {
+            var text = new Text("");
+            Assert.AreEqual(null, text.InitialLetter);
+        }
     }
 }

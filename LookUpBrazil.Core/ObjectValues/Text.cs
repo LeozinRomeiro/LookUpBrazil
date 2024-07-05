@@ -14,6 +14,10 @@ namespace LookUpBrazil.Core.ObjectValues
 
         public Text(string textCompleted)
         {
+            if (textCompleted is null)
+            {
+                throw new ArgumentNullException(nameof(textCompleted), message: "Texto está nulo");
+            }
             TextCompleted = textCompleted;
         }
         public string TextCompleted
