@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Metrics;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ namespace LookUpBrazil.Core.ObjectValues
         protected Letter() { }
         public Letter(char text)
         {
+            text = char.ToUpper(RemoveDiacritics(text.ToString()));
             InvalidLetterException.ThrowIfInvalid(text);
             Character = text;
         }
@@ -45,5 +47,25 @@ namespace LookUpBrazil.Core.ObjectValues
         }
 
         public static bool operator !=(Letter left, Letter right) => !(left == right);
+
+        private static char RemoveDiacritics(string text)
+        {
+            if (string.IsNullOrEmpty(text))
+                return text[0];
+
+            var normalizedString = text.Normalize(NormalizationForm.FormD);
+            var stringBuilder = new StringBuilder();
+
+            foreach (var c in normalizedString)
+            {
+                var unicodeCategory = CharUnicodeInfo.GetUnicodeCategory(c);
+                if (unicodeCategory != UnicodeCategory.NonSpacingMark)
+                {
+                    stringBuilder.Append(c);
+                }
+            }
+
+            return stringBuilder.ToString().Normalize(NormalizationForm.FormC)[0];
+        }
     }
 }

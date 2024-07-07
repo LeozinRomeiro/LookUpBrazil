@@ -20,21 +20,23 @@ namespace LookUpBrazil.Core.ObjectValues
             }
             TextCompleted = textCompleted;
         }
-        public Letter InitialLetter { get; private set; } = null!;
+        public Letter InitialLetter => new Letter(TextCompleted[0]);
         public string _textCompleted = string.Empty;
         public string TextCompleted
         {
             get => _textCompleted;
             set
             {
-                _textCompleted = value;
-                if (string.IsNullOrEmpty(value))
-                {
-                    throw new ArgumentNullException(nameof(value), message: "Texto do nome está nulo ou vazio");
-                }
-                var normalizedValue = RemoveDiacritics(value[0].ToString());
-                InitialLetter = new Letter(normalizedValue[0]);
+                SetTextCompleted(value);
             }
+        }
+        public void SetTextCompleted(string textCompleted)
+        {
+            if (string.IsNullOrEmpty(textCompleted))
+            {
+                throw new ArgumentNullException(nameof(textCompleted), message: "Texto do nome está nulo ou vazio");
+            }
+            _textCompleted = textCompleted;
         }
 
         public static implicit operator string(Name name) => name.ToString();
@@ -45,24 +47,5 @@ namespace LookUpBrazil.Core.ObjectValues
             return _textCompleted.ToString();
         }
 
-        private static string RemoveDiacritics(string text)
-        {
-            if (string.IsNullOrEmpty(text))
-                return text;
-
-            var normalizedString = text.Normalize(NormalizationForm.FormD);
-            var stringBuilder = new StringBuilder();
-
-            foreach (var c in normalizedString)
-            {
-                var unicodeCategory = CharUnicodeInfo.GetUnicodeCategory(c);
-                if (unicodeCategory != UnicodeCategory.NonSpacingMark)
-                {
-                    stringBuilder.Append(c);
-                }
-            }
-
-            return stringBuilder.ToString().Normalize(NormalizationForm.FormC);
-        }
     }
 }
