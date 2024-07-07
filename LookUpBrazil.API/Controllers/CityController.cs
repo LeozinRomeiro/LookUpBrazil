@@ -1,10 +1,6 @@
-﻿using LookUpBrazil.Api.ViewModels.Locations;
-using LookUpBrazil.Core.Handler;
+﻿using LookUpBrazil.Core.Handler;
 using Microsoft.AspNetCore.Mvc;
-using LookUpBrazil.Api.Data;
-using LookUpBrazil.Core.Responses;
-using LookUpBrazil.Core.ObjectValues;
-using LookUpBrazil.Core.Requests.City;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace LookUpBrazil.Api.Controllers
 {
@@ -21,9 +17,18 @@ namespace LookUpBrazil.Api.Controllers
         }
         [HttpGet]
         public async Task<IResult> GetNamesAsync(
-            [FromServices] ICityHandler handler)
+            [FromServices] ICityHandler handler,
+            [FromServices] IMemoryCache cache,
+            [FromQuery] char letter)
         {
-            var result = await handler.GetNamesCitiesAsync();
+
+            var result = await cache.GetOrCreateAsync($"Names{char.ToUpper(letter)}Cache", async item =>
+            {
+                item.AbsoluteExpirationRelativeToNow = TimeSpan.FromHours(24);
+                item.SlidingExpiration = TimeSpan.FromHours(12);
+                return await handler.GetNamesCitiesAsync(letter);
+            })??await handler.GetNamesCitiesAsync(letter);
+
             return result.IsSuccess
             ? TypedResults.Ok(result)
             : TypedResults.BadRequest(result);

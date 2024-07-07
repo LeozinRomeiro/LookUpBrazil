@@ -30,11 +30,11 @@ namespace LookUpBrazil.Api.Handler
                 throw;
             }
         }
-        public async Task<Response<List<Name>>> GetNamesCitiesAsync()
+        public async Task<Response<List<Name>>> GetNamesCitiesAsync(char letter)
         {
             try
             {
-                var names = await cityRepository.GetNamesCitiesAsync();
+                var names = await cityRepository.GetNamesCitiesAsync(new Letter(letter));
                 return new Response<List<Name>>(names);
             }
             catch

@@ -7,17 +7,15 @@ using LookUpBrazil.Core.Responses;
 
 namespace LookUpBrazil.Api.Handler
 {
-    public class GameHandler(IGameRepository gameRepository, ICityRepository cityRepository) : IGameHandler
+    public class GameHandler(IGameRepository gameRepository) : IGameHandler
     {
-        public async Task<Response<Game>> CreateGameAsync()
+        public async Task<Response<Game>> CreateGameAsync(List<Name> names, Requirement requirement)
             {
                 try
                 {
-                    var names = await cityRepository.GetNamesCitiesAsync();
-
                     if (names is not null)
                     {
-                        var game = new Game(names);
+                        var game = new Game(names, requirement);
                         await gameRepository.CreateGameAsync(game, names);
                         return new Response<Game>(game, message: "A letra inicial precisa ser " + game.Requirement.InitialLetter?.ToString());
                     }

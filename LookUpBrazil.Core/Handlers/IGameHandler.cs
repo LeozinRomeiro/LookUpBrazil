@@ -14,6 +14,6 @@ namespace LookUpBrazil.Core.Handler
     {
         Task<Response<Game?>> AttemptAsync(AttemptRequest attempt, Guid gameId);
         Task<Response<Game>> GetGameAsync(GetGameRequest request);
-        Task<Response<Game>> CreateGameAsync();
+        Task<Response<Game>> CreateGameAsync(List<Name> names, Requirement requirement);
     }
 }

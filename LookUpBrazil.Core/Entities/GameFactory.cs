@@ -9,9 +9,9 @@ namespace LookUpBrazil.Core.Entities
 {
     public static class GameFactory
     {
-        public static Game Create(List<Name> names)
+        public static Game Create(List<Name> names, Requirement requirement)
         {
-            return new Game(names);
+            return new Game(names, requirement);
         }
     }
 }

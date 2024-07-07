@@ -11,7 +11,7 @@ namespace LookUpBrazil.Core.Repositories
     {
         Task<List<City>?> GetCitiesByLetterAsync(char letter);
         Task<List<City>?> GetCitiesAsync();
-        Task<List<Name>?> GetNamesCitiesAsync();
+        Task<List<Name>?> GetNamesCitiesAsync(Letter letter);
         Task CreateCitiesAsync(List<City> cities);
     }
 }

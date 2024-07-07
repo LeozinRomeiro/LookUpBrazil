@@ -120,6 +120,7 @@ void ConfigureServices(WebApplicationBuilder builder)
     builder.Services.AddTransient<ICityRepository, CityRepository>();
     builder.Services.AddTransient<ICityHandler,CityHandler>();
     builder.Services.AddTransient<IGameHandler,GameHandler>();
+    builder.Services.AddMemoryCache();
     builder.Services.AddHttpClient(
     Configuration.HttpClientName,
     x =>

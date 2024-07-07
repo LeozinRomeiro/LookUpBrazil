@@ -9,18 +9,19 @@ namespace LookUpBrazil.Core.Entities
 {
     public class Game : Entity
     {
-        public Requirement Requirement { get; private set; } = new Requirement();
+        public Requirement Requirement { get; private set; } = null!;
         public List<Name> SecretNames { get; } = null!;
         public List<Name> MatchedNames { get; set; } = [];
         public bool Finish => SecretNames.Count == 0;
         protected Game() { }
-        public Game(List<Name> names)
+        public Game(List<Name> names, Requirement requirement)
         {
             if (names is null || names.Count == 0)
             {
                 throw new ArgumentNullException(nameof(names), message: "As cidades validas não foram reconhecidas");
             }
-            SecretNames = names.Where(x=>x.InitialLetter.Equals(Requirement.InitialLetter)).ToList();
+            Requirement = requirement;
+            SecretNames = names;
         }
         public bool Attempt(Name name)
         {

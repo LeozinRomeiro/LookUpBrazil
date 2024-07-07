@@ -21,11 +21,15 @@ namespace LookUpBrazil.Api.Repositories
             }
         }
 
-        public async Task<List<City>?> GetCitiesAsync()
+        public async Task<List<City>?> GetCitiesAsync(Letter letter)
         {
             try
             {
-                return await context.Cities.ToListAsync();
+                var cities = await context.Cities
+                          .AsNoTracking()
+                          .ToListAsync();
+
+                return cities.Where(x => x.Name.InitialLetter.Character == letter.Character).ToList();
             }
             catch (Exception ex)
             {
@@ -33,11 +37,35 @@ namespace LookUpBrazil.Api.Repositories
             }
         }
 
-        public async Task<List<Name>?> GetNamesCitiesAsync()
+        public async Task<List<City>?> GetCitiesAsync(States states)
         {
             try
             {
-                var cities = await GetCitiesAsync();
+                return await context.Cities.AsNoTracking().Where(x => x.States.Acronym == states.Acronym).ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erro ao buscar cidades", ex);
+            }
+        }
+
+        public async Task<List<City>?> GetCitiesAsync()
+        {
+            try
+            {
+                return await context.Cities.AsNoTracking().ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erro ao buscar cidades", ex);
+            }
+        }
+
+        public async Task<List<Name>?> GetNamesCitiesAsync(Letter letter)
+        {
+            try
+            {
+                var cities = await GetCitiesAsync(letter);
                 var names = new List<Name>();
                 foreach (var city in cities??[])
                 {
