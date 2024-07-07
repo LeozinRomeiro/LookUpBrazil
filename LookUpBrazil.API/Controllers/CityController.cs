@@ -19,5 +19,14 @@ namespace LookUpBrazil.Api.Controllers
             await handler.GetIbgeCitiesAsync();
             return TypedResults.Ok();
         }
+        [HttpGet]
+        public async Task<IResult> GetNamesAsync(
+            [FromServices] ICityHandler handler)
+        {
+            var result = await handler.GetNamesCitiesAsync();
+            return result.IsSuccess
+            ? TypedResults.Ok(result)
+            : TypedResults.BadRequest(result);
+        }
     }
 }

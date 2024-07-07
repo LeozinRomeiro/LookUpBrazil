@@ -21,13 +21,7 @@ namespace LookUpBrazil.Test.Handler
         [TestMethod]
         public void DadoUmaTentativaCorretaDeveRetornarSucesso()
         {
-            var cities = CityRepository.GetCities();
-
-            List<Name> names = [];
-            foreach (var city in cities??[])
-            {
-                names.Add(city.Name);
-            }
+            var names = CityRepository.GetNamesCities();
 
             var game = new Game(names);
 
@@ -53,13 +47,7 @@ namespace LookUpBrazil.Test.Handler
         [TestMethod]
         public void DadoUmaTentativaIncorretaNaoDeveRetornarSucesso()
         {
-            var cities = CityRepository.GetCities();
-
-            List<Name> names = [];
-            foreach (var city in cities ?? [])
-            {
-                names.Add(city.Name);
-            }
+            var names = CityRepository.GetNamesCities();
 
             var game = new Game(names);
 
@@ -85,13 +73,7 @@ namespace LookUpBrazil.Test.Handler
         [TestMethod]
         public void AcertandoTodasAsCidadesGameDeveApontarFinish()
         {
-            var cities = CityRepository.GetCities();
-
-            List<Name> names = [];
-            foreach (var city in cities??[])
-            {
-                names.Add(city.Name);
-            }
+            var names = CityRepository.GetNamesCities();
 
             var game = new Game(names);
 
