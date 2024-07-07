@@ -112,7 +112,7 @@ void ConfigureMVC(WebApplicationBuilder builder)
 void ConfigureServices(WebApplicationBuilder builder)
 {
     builder.Services.AddDbContext<LookUpBrazilApiContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string n�o informada.")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string nao informada.")));
 
     builder.Services.AddTransient<TokenService>();
     builder.Services.AddTransient<EmailService>();
