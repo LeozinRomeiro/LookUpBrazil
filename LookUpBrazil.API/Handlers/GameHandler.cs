@@ -59,7 +59,7 @@ namespace LookUpBrazil.Api.Handler
 
                 if (game.Attempt(attempt.Name))
                 {
-                    return new Response<Game?>(game);
+                    return new Response<Game?>(game, message:$"Exatado! {attempt.Name} inicia com {game.Requirement.InitialLetter} e pertence ao Brasil");
                 }
                 
                 return new Response<Game?>(null, 300, "Game não é valida");
