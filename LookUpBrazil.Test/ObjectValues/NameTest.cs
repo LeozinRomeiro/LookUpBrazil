@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace LookUpBrazil.Test.ObjectValues
 {
@@ -17,6 +18,12 @@ namespace LookUpBrazil.Test.ObjectValues
         public void ValidaçãoDeNome(string textCompleted, bool IsValid)
         {
             try { var name = new Name(textCompleted); Assert.IsTrue(IsValid); } catch (ArgumentNullException) { Assert.IsFalse(IsValid); }
+        }
+        [TestMethod]
+        public void ConstrutorDeveRemoverOsAcentosDaLetraInicial()
+        {
+            var name = new Name("Ácido");
+            Assert.AreEqual(name.InitialLetter.Character, 'A');
         }
     }
 }

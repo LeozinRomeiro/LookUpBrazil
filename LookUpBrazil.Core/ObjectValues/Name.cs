@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.Json.Serialization;
@@ -17,20 +18,51 @@ namespace LookUpBrazil.Core.ObjectValues
             {
                 throw new ArgumentNullException(nameof(textCompleted), message: "Texto do nome está nulo ou vazio");
             }
-            Text = new Text(textCompleted);
+            TextCompleted = textCompleted;
         }
-        public Name(Text text)
+        public Letter InitialLetter { get; private set; } = null!;
+        public string _textCompleted = string.Empty;
+        public string TextCompleted
         {
-            Text = text ?? throw new ArgumentNullException(nameof(text), "Texto do nome está nulo ou vazio");
+            get => _textCompleted;
+            set
+            {
+                _textCompleted = value;
+                if (string.IsNullOrEmpty(value))
+                {
+                    throw new ArgumentNullException(nameof(value), message: "Texto do nome está nulo ou vazio");
+                }
+                var normalizedValue = RemoveDiacritics(value[0].ToString());
+                InitialLetter = new Letter(normalizedValue[0]);
+            }
         }
-        public Text Text { get; set; } = null!;
 
         public static implicit operator string(Name name) => name.ToString();
-        public static implicit operator Name(string name) => new Name(name);
+        public static implicit operator Name(string name) => new(name);
 
         public override string ToString()
         {
-            return Text.ToString();
+            return _textCompleted.ToString();
+        }
+
+        private static string RemoveDiacritics(string text)
+        {
+            if (string.IsNullOrEmpty(text))
+                return text;
+
+            var normalizedString = text.Normalize(NormalizationForm.FormD);
+            var stringBuilder = new StringBuilder();
+
+            foreach (var c in normalizedString)
+            {
+                var unicodeCategory = CharUnicodeInfo.GetUnicodeCategory(c);
+                if (unicodeCategory != UnicodeCategory.NonSpacingMark)
+                {
+                    stringBuilder.Append(c);
+                }
+            }
+
+            return stringBuilder.ToString().Normalize(NormalizationForm.FormC);
         }
     }
 }

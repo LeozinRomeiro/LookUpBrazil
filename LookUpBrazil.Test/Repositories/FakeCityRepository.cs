@@ -19,7 +19,7 @@ namespace LookUpBrazil.Test.Repositories
 
             Cities.Add(city);
 
-            return Cities.First(x=>x.Name.Text.TextCompleted == TextCompleted);
+            return Cities.First(x=>x.Name.TextCompleted == TextCompleted);
         }
 
         public List<City> GetCities()

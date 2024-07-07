@@ -12,7 +12,7 @@ namespace LookUpBrazil.Api.Repositories
 			try
 			{
                 return await context.Cities
-                    .Where(x => EF.Functions.Like(x.Name.Text.TextCompleted, $"{letter}%"))
+                    .Where(x => EF.Functions.Like(x.Name.TextCompleted, $"{letter}%"))
                     .ToListAsync();
             }
             catch (Exception ex)

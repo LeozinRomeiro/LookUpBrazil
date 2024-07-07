@@ -33,7 +33,7 @@ namespace LookUpBrazil.Test.Handler
 
             var request = new AttemptRequest
             {
-                Name = names.First(x=>x.Text.InitialLetter.Equals(game.Requirement.InitialLetter)).ToString(),
+                Name = names.First(x=>x.InitialLetter.Equals(game.Requirement.InitialLetter)).ToString(),
             };
 
             Response<bool> response;
@@ -65,7 +65,7 @@ namespace LookUpBrazil.Test.Handler
 
             var request = new AttemptRequest
             {
-                Name = names.First(x => x.Text.InitialLetter != game.Requirement.InitialLetter),
+                Name = names.First(x => x.InitialLetter != game.Requirement.InitialLetter),
             };
 
             Response<bool> response;
@@ -97,7 +97,7 @@ namespace LookUpBrazil.Test.Handler
 
             bool LastAttempt = false;
 
-            foreach (var name in names.Where(x => x.Text.InitialLetter?.ToString() == game.Requirement.InitialLetter?.ToString()))
+            foreach (var name in names.Where(x => x.InitialLetter?.ToString() == game.Requirement.InitialLetter?.ToString()))
             {
                 var request = new AttemptRequest
                 {

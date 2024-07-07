@@ -20,7 +20,7 @@ namespace LookUpBrazil.Test.Entities
             names = CityRepository.GetNamesCities();
 
             var game = new Game(names);
-            Assert.IsTrue(game.Attempt(names.First(x => x.Text.InitialLetter.Equals(game.Requirement.InitialLetter))));
+            Assert.IsTrue(game.Attempt(names.First(x => x.InitialLetter.Equals(game.Requirement.InitialLetter))));
         }
         [TestMethod]
         public void DadoUmaTentativaIncorretaNaoDeveRetornarSucesso()
@@ -28,7 +28,7 @@ namespace LookUpBrazil.Test.Entities
             names = CityRepository.GetNamesCities();
 
             var game = new Game(names);
-            Assert.IsFalse(game.Attempt(names.First(x => x.Text.InitialLetter != game.Requirement.InitialLetter)));
+            Assert.IsFalse(game.Attempt(names.First(x => x.InitialLetter != game.Requirement.InitialLetter)));
         }
         [TestMethod]
         [DataRow(null, false)]

@@ -35,30 +35,24 @@ namespace LookUpBrazil.Api.Data.Mappings
                 sn.Property<int>("Id");
                 sn.HasKey("Id");
                 sn.ToTable("GameSecretNames");
-                sn.OwnsOne(name => name.Text, t =>
-                {
-                    t.Property(t => t.TextCompleted)
-                        .IsRequired()
-                        .HasColumnName("Name")
-                        .HasColumnType("NVARCHAR")
-                        .HasMaxLength(80);
+                sn.Property(t => t.TextCompleted)
+                    .IsRequired()
+                    .HasColumnName("Name")
+                    .HasColumnType("NVARCHAR")
+                    .HasMaxLength(80);
 
-                    t.Ignore(t => t.InitialLetter);
-                });
+                sn.Ignore(t => t.InitialLetter);
             });
 
             builder.OwnsMany(e => e.MatchedNames, mn =>
             {
-                mn.OwnsOne(name => name.Text, t =>
-                {
-                    t.Property(t => t.TextCompleted)
-                        .IsRequired()
-                        .HasColumnName("Name")
-                        .HasColumnType("NVARCHAR")
-                        .HasMaxLength(80);
+                mn.Property(t => t.TextCompleted)
+                    .IsRequired()
+                    .HasColumnName("Name")
+                    .HasColumnType("NVARCHAR")
+                    .HasMaxLength(80);
 
-                    t.Ignore(t => t.InitialLetter);
-                });
+                mn.Ignore(t => t.InitialLetter);
                 mn.WithOwner().HasForeignKey("GameId");
                 mn.Property<int>("Id");
                 mn.HasKey("Id");

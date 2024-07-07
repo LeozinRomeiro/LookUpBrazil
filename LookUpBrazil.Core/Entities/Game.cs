@@ -20,13 +20,13 @@ namespace LookUpBrazil.Core.Entities
             {
                 throw new ArgumentNullException(nameof(names), message: "As cidades validas não foram reconhecidas");
             }
-            SecretNames = names.Where(x=>x.Text.InitialLetter.Equals(Requirement.InitialLetter)).ToList();
+            SecretNames = names.Where(x=>x.InitialLetter.Equals(Requirement.InitialLetter)).ToList();
         }
         public bool Attempt(Name name)
         {
-            if(Requirement.InitialLetter?.ToString() == name.Text.InitialLetter?.ToString() || SecretNames.Contains(name))
+            if(Requirement.InitialLetter?.ToString() == name.InitialLetter?.ToString() || SecretNames.Contains(name))
             {
-                var matchedName = SecretNames.Find(x => x.Text.TextCompleted == name);
+                var matchedName = SecretNames.Find(x => x.TextCompleted == name);
                 if (matchedName != null)
                 {
                     MatchedNames.Add(matchedName);

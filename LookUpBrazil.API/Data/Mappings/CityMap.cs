@@ -19,16 +19,15 @@ namespace LookUpBrazil.Api.Data.Mappings
             builder.OwnsOne(x => x.Name, name =>
             {
 
-                name.OwnsOne(name => name.Text, t =>
-                {
-                    t.Property(t => t.TextCompleted)
+
+                name.Property(t => t.TextCompleted)
                         .IsRequired()
                         .HasColumnName("Name")
                         .HasColumnType("NVARCHAR")
                         .HasMaxLength(80);
 
-                    t.Ignore(t => t.InitialLetter);
-                });
+                name.Ignore(t => t.InitialLetter);
+
             });
 
             builder.OwnsOne(x => x.States, states =>
