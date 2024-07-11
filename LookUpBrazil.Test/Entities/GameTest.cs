@@ -19,7 +19,7 @@ namespace LookUpBrazil.Test.Entities
         {
             names = CityRepository.GetNamesCities();
 
-            var game = new Game(names);
+            var game = new Game(names, new Requirement());
             Assert.IsTrue(game.Attempt(names.First(x => x.InitialLetter.Equals(game.Requirement.InitialLetter))));
         }
         [TestMethod]
@@ -27,8 +27,8 @@ namespace LookUpBrazil.Test.Entities
         {
             names = CityRepository.GetNamesCities();
 
-            var game = new Game(names);
-            Assert.IsFalse(game.Attempt(names.First(x => x.InitialLetter != game.Requirement.InitialLetter)));
+            var game = new Game(names, new Requirement());
+            Assert.IsFalse(game.Attempt("Teste"));
         }
         [TestMethod]
         [DataRow(null, false)]
@@ -36,7 +36,7 @@ namespace LookUpBrazil.Test.Entities
         {
             try
             {
-                new Game(names);
+                new Game(names, new Requirement());
                 Assert.IsTrue(isValid);
             }
             catch (ArgumentNullException)
@@ -49,13 +49,29 @@ namespace LookUpBrazil.Test.Entities
         {
             try
             {
-                new Game(new List<Name>());
+                new Game(new List<Name>(), new Requirement());
                 Assert.IsTrue(false);
             }
             catch (ArgumentNullException)
             {
                 Assert.IsTrue(true);
             }
+        }
+        [TestMethod]
+        public void AcertandoTodasAsCidadesGameDeveApontarFinish()
+        {
+            var requirement = new Requirement();
+
+            var names = CityRepository.GetNamesCitiesByLetter(requirement.InitialLetter.Character);
+
+            var game = new Game(names, requirement);
+
+            foreach (var name in CityRepository.GetNamesCitiesByLetter(requirement.InitialLetter.Character))
+            {
+                game.Attempt(name);
+            }
+
+            Assert.IsTrue(game.Finish);
         }
     }
 }

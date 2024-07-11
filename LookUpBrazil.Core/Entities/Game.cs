@@ -21,6 +21,13 @@ namespace LookUpBrazil.Core.Entities
                 throw new ArgumentNullException(nameof(names), message: "As cidades validas não foram reconhecidas");
             }
             Requirement = requirement;
+            foreach (var name in names)
+            {
+                if (!name.InitialLetter.Equals(Requirement.InitialLetter))
+                {
+                    throw new ArgumentException(nameof(names), "As cidades validas não estão coerentes com o requirimento");
+                }
+            }
             SecretNames = names;
         }
         public bool Attempt(Name name)

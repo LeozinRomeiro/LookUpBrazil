@@ -66,5 +66,22 @@ namespace LookUpBrazil.Test.Repositories
 
             return names;
         }
+
+        public List<City> GetCitiesByLetter(char letter)
+        {
+            List<City> cities = GetCities().Where(x=>x.Name.InitialLetter.Equals(new Letter(letter))).ToList();
+            return cities ?? [];
+        }
+        public List<Name> GetNamesCitiesByLetter(char letter)
+        {
+            List<Name> names = [];
+            List<City> cities = GetCitiesByLetter(letter);
+            foreach (var city in cities)
+            {
+                names.Add(city.Name);
+            }
+
+            return names;
+        }
     }
 }

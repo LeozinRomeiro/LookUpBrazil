@@ -23,7 +23,7 @@ namespace LookUpBrazil.Test.Handler
         {
             var names = CityRepository.GetNamesCities();
 
-            var game = new Game(names);
+            var game = new Game(names, new Requirement());
 
             var request = new AttemptRequest
             {
@@ -49,7 +49,7 @@ namespace LookUpBrazil.Test.Handler
         {
             var names = CityRepository.GetNamesCities();
 
-            var game = new Game(names);
+            var game = new Game(names, new Requirement());
 
             var request = new AttemptRequest
             {
@@ -68,39 +68,6 @@ namespace LookUpBrazil.Test.Handler
             }
 
             Assert.IsFalse(response.IsSuccess);
-        }
-
-        [TestMethod]
-        public void AcertandoTodasAsCidadesGameDeveApontarFinish()
-        {
-            var names = CityRepository.GetNamesCities();
-
-            var game = new Game(names);
-
-            bool LastAttempt = false;
-
-            foreach (var name in names.Where(x => x.InitialLetter?.ToString() == game.Requirement.InitialLetter?.ToString()))
-            {
-                var request = new AttemptRequest
-                {
-                    Name = name,
-                };
-
-                LastAttempt = !game.Attempt(request.Name);
-            }
-
-            Response<bool> response;
-
-            if (!LastAttempt)
-            {
-                response = new Response<bool>(false, 300, "Cidade nao e valida");
-            }
-            else
-            {
-                response = new Response<bool>(game.Finish);
-            }
-
-            Assert.IsTrue(game.Finish);
         }
 
         //[TestMethod]
