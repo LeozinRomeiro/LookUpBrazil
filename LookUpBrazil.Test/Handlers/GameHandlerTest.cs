@@ -21,9 +21,11 @@ namespace LookUpBrazil.Test.Handler
         [TestMethod]
         public void DadoUmaTentativaCorretaDeveRetornarSucesso()
         {
-            var names = CityRepository.GetNamesCities();
+            var requirement = new Requirement();
 
-            var game = new Game(names, new Requirement());
+            var names = CityRepository.GetNamesCitiesByLetter(requirement.InitialLetter);
+
+            var game = new Game(names, requirement);
 
             var request = new AttemptRequest
             {
@@ -47,13 +49,15 @@ namespace LookUpBrazil.Test.Handler
         [TestMethod]
         public void DadoUmaTentativaIncorretaNaoDeveRetornarSucesso()
         {
-            var names = CityRepository.GetNamesCities();
+            var requirement = new Requirement();
 
-            var game = new Game(names, new Requirement());
+            var names = CityRepository.GetNamesCitiesByLetter(requirement.InitialLetter);
+
+            var game = new Game(names, requirement);
 
             var request = new AttemptRequest
             {
-                Name = names.First(x => x.InitialLetter != game.Requirement.InitialLetter),
+                Name = "Errado",
             };
 
             Response<bool> response;

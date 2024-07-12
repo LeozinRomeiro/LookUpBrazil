@@ -1,4 +1,5 @@
 ﻿using LookUpBrazil.Core.Entities;
+using LookUpBrazil.Core.Exceptions;
 using LookUpBrazil.Core.ObjectValues;
 using LookUpBrazil.Test.Repositories;
 using System;
@@ -15,19 +16,23 @@ namespace LookUpBrazil.Test.Entities
         private FakeCityRepository CityRepository = new();
         private List<Name> names = [];
         [TestMethod]
-        public void DadoUmaTentativaCorretaDeveRetornarSucesso()
+        public void DadoUmaTentativaCorretaDeveRetornarTrue()
         {
-            names = CityRepository.GetNamesCities();
+            var requirement = new Requirement();
 
-            var game = new Game(names, new Requirement());
+            names = CityRepository.GetNamesCitiesByLetter(requirement.InitialLetter);
+
+            var game = new Game(names, requirement);
             Assert.IsTrue(game.Attempt(names.First(x => x.InitialLetter.Equals(game.Requirement.InitialLetter))));
         }
         [TestMethod]
-        public void DadoUmaTentativaIncorretaNaoDeveRetornarSucesso()
+        public void DadoUmaTentativaIncorretaNaoDeveRetornarFalse()
         {
-            names = CityRepository.GetNamesCities();
+            var requirement = new Requirement();
 
-            var game = new Game(names, new Requirement());
+            names = CityRepository.GetNamesCitiesByLetter(requirement.InitialLetter);
+
+            var game = new Game(names, requirement);
             Assert.IsFalse(game.Attempt("Teste"));
         }
         [TestMethod]
@@ -72,6 +77,20 @@ namespace LookUpBrazil.Test.Entities
             }
 
             Assert.IsTrue(game.Finish);
+        }
+        [TestMethod]
+        public void DadoUmaListaComNomesDiferentesDoRequerimentoDeveRetornarException()
+        {
+            try
+            {
+                var names = CityRepository.GetNamesCities();
+                new Game(names, new Requirement());
+                Assert.IsTrue(false);
+            }
+            catch (InvalidGameException)
+            {
+                Assert.IsTrue(true);
+            }
         }
     }
 }

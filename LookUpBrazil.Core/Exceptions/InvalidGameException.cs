@@ -15,7 +15,14 @@ namespace LookUpBrazil.Core.Exceptions
             List<Name> names, Requirement requirement,
             string message = DefaultErrorMessage)
         {
-            
+            if (names is null || names.Count == 0)
+                throw new ArgumentNullException(nameof(names), message: "As cidades validas não foram reconhecidas");
+
+            foreach (var name in names)
+            {
+                if (!name.InitialLetter.Equals(requirement.InitialLetter))
+                    throw new InvalidGameException("As cidades validas não estão coerentes com o requirimento");
+            }
         }
 
     }
