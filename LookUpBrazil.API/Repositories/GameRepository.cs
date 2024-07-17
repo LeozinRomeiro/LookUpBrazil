@@ -34,5 +34,17 @@ namespace LookUpBrazil.Api.Repositories
             }
         }
 
+        public async Task<List<Game>> GetGamesAsync()
+        {
+            try
+            {
+                return await context.Games.ToListAsync();
+            }
+            catch
+            {
+
+                throw;
+            }
+        }
     }
 }

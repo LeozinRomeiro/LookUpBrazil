@@ -26,6 +26,16 @@ namespace LookUpBrazil.Api.Controllers
             : TypedResults.BadRequest(result);
         }
 
+        [HttpGet("Games")]
+        public async Task<IResult> GetGames(
+            [FromServices] IGameHandler handler)
+        {
+            var result = await handler.GetGamesAsync();
+            return result.IsSuccess
+            ? TypedResults.Ok(result)
+            : TypedResults.BadRequest(result);
+        }
+
         [HttpPost("Attempt")]
         public async Task<IResult> PostAttempt(
             [FromServices] IGameHandler handler,
