@@ -4,6 +4,7 @@ using LookUpBrazil.Core.ObjectValues;
 using LookUpBrazil.Core.Repositories;
 using LookUpBrazil.Core.Requests.Game;
 using LookUpBrazil.Core.Responses;
+using LookUpBrazil.Core.Responses.Game;
 
 namespace LookUpBrazil.Api.Handler
 {
@@ -44,16 +45,16 @@ namespace LookUpBrazil.Api.Handler
                 return new Response<Game>(null, 500, "Falha no servidor: " + e.Message);
             }
         }
-        public async Task<Response<List<Game>>> GetGamesAsync()
+        public async Task<Response<List<GetGameResponse>>> GetGamesAsync()
         {
             try
             {
                 var games = await gameRepository.GetGamesAsync();
-                return new Response<List<Game>>(games);
+                return new Response<List<GetGameResponse>>(games);
             }
             catch (Exception e)
             {
-                return new Response<List<Game>>(null, 500, "Falha no servidor: " + e.Message);
+                return new Response<List<GetGameResponse>>(null, 500, "Falha no servidor: " + e.Message);
             }
         }
         public async Task<Response<Game?>> AttemptAsync(AttemptRequest attempt, Guid gameId)

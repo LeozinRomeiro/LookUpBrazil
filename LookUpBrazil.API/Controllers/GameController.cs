@@ -13,10 +13,10 @@ namespace LookUpBrazil.Api.Controllers
     [ApiController]
     public class GameController
     {
-        [HttpGet]
+        [HttpGet("{gameId}")]
         public async Task<IResult> GetGame(
             [FromServices] IGameHandler handler,
-            [FromQuery] Guid gameId)
+            [FromRoute] Guid gameId)
         {
             var request = new GetGameRequest { GameId = gameId };
 
